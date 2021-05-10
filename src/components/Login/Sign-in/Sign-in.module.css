@@ -1,0 +1,9 @@
+.btn{
+    background: #4CAF50;
+    width: 300px;
+}
+
+.captcha{
+    max-width: 400px;
+    margin: 5px;
+}
