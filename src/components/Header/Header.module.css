@@ -1,0 +1,71 @@
+.Logo {
+    height: 58px;
+    pointer-events: none;
+}
+
+@media (max-width:400px) {
+.Logo{
+    display: none;
+}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .Logo {
+        animation: Logo-spin infinite 20s linear;
+    }
+}
+
+.Header {
+    grid-area: h;
+    background-color: #282c34;
+    height: 60px;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 35px 0 35px;
+}
+
+@keyframes Logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.login {
+    max-width: 1000px;
+    display: flex;
+    align-content: flex-start;
+}
+
+.name {
+    color: #61dafb;
+    font-size: 25px;
+    margin: 10px;
+}
+
+.ava {
+    width: 50px;
+    border-radius: 90%;
+    margin-right: 40px;
+}
+
+.bar {
+    margin: 5px;
+    display: flex;
+    height: 50px;
+}
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 12px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+

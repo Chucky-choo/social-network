@@ -1,0 +1,10 @@
+.main {
+    max-width: 500px;
+    margin: 10px auto 0 auto;
+}
+
+.selectedPages {
+    font: bold italic 110% serif;
+    background: #4CAF50;
+}
+

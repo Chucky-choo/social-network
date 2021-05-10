@@ -1,0 +1,47 @@
+.header {
+    display: flex;
+    background: azure;
+    max-width: 1000px;
+}
+
+@media (max-width:920px) {
+    .header {
+        display: grid;
+        grid-template-areas:
+                "ava text "
+                "status icons";
+        grid-template-columns: 1fr 3fr;
+        grid-template-rows: 1fr auto;
+    }
+}
+
+@media (max-width:580px) {
+    .header {
+        display: grid;
+        grid-template-areas:
+                "ava status "
+                "text text"
+                "icons icons";
+        grid-template-columns: 1fr 3fr;
+        grid-template-rows: 3fr auto auto;
+    }
+}
+
+
+.ava {
+    grid-area: ava;
+    max-width: 240px;
+}
+
+@media (max-width:920px) {
+    .ava {
+        width: 100%;
+    }
+}
+
+
+.profilText {
+    grid-area: text;
+    padding: 10px;
+    text-align: center;
+}

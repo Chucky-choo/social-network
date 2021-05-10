@@ -1,0 +1,30 @@
+.editAva {
+    display: flex;
+    justify-content: space-around;
+    background: palegoldenrod;
+}
+
+
+.form {
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto 0 auto;
+    background: #61dafb;
+}
+
+.field {
+    width: 150px;
+}
+
+.form input{
+    margin: 5px;
+}
+
+.form button{
+    max-width: 300px;
+}
+
+.wornings {
+    background: red;
+}

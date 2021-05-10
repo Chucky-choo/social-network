@@ -1,0 +1,6 @@
+.main {
+    grid-area: status;
+    width: 200px;
+    height: 100px;
+    background: #61dafb;
+}

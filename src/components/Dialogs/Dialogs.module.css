@@ -1,0 +1,28 @@
+.main {
+    display: grid;
+    grid-template-columns: 5fr 8fr;
+    background: yellow;
+    height: 1000px;
+}
+
+.dialogs {
+ margin: 15px;
+}
+
+.dialog {
+margin: 8px;
+    color: rgb(223, 13, 58);
+    text-decoration: none;
+}
+
+.dialog a.activeLink {
+    color: silver;
+}
+
+.messages {
+background: aquamarine;
+}
+
+.messages div {
+    margin: 15px;
+}

@@ -1,0 +1,10 @@
+.body {
+    display: flex;
+    height: 60px;
+}
+
+.errors {
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+}

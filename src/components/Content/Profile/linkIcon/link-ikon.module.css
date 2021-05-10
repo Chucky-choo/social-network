@@ -1,0 +1,9 @@
+.socialImg img {
+    width: 30px;
+    margin: 7px
+}
+
+.socialImg {
+    grid-area: icons;
+    padding: 10px 15px 10px 15px;
+}

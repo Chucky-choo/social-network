@@ -1,0 +1,9 @@
+.dialog {
+margin: 8px;
+    color: rgb(223, 13, 58);
+    text-decoration: none;
+}
+
+.dialog a.activeLink {
+    color: silver;
+}

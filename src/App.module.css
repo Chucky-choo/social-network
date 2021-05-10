@@ -1,0 +1,24 @@
+.App {
+  text-align: center;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.body {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-areas:
+  "h h"
+  "n c";
+  grid-template-columns: 1fr 5fr;
+  grid-template-rows: 60px auto;
+
+}
+
+.main {
+  grid-area: c;
+  background: #3d5e54;
+}

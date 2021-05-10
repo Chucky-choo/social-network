@@ -1,0 +1,17 @@
+.main {
+    grid-area: n;
+    display: flex;
+    flex-direction: column;
+    max-width: 250px;
+    background: #d8c76b;
+}
+
+.main a {
+    margin: 6px;
+    color: green;
+    text-decoration: none;
+}
+
+.main a.activeLink {
+    color: #1fc2f5;
+}

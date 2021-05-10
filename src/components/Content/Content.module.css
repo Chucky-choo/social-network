@@ -1,0 +1,12 @@
+.main img {
+  max-height: 300px;
+  width: 100%;
+}
+
+.heder {
+  display: flex;
+}
+
+.heder img {
+  width: 20%;
+}

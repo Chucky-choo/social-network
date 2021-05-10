@@ -1,0 +1,30 @@
+.main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(345px, 1fr));
+    gap: 2px;
+}
+
+.img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50px;
+}
+
+.flex {
+    display: flex;
+    margin: 20px;
+    border: 4px inset palegoldenrod;
+}
+
+.flex div {
+    margin: 10px;
+}
+
+.lef {
+    display: flex;
+    flex-direction: column
+}
+
+.profileInfo {
+    max-width: 200px;
+}
