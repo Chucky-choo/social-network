@@ -1,0 +1,31 @@
+.main {
+  background: #070606;
+  h1 {
+    color: white;
+  }
+  .imgimg {
+    background: #514d4d;
+    height: 50px;
+    border-radius: 35px;
+    position: inherit;
+    //left: 30%;
+    //top: 20%
+  }
+}
+
+.intro {
+  width: 30%;
+  margin: auto;
+}
+
+.body {
+  background: #070606;
+  display: flex;
+}
+
+@media (max-width:650px) {
+  .body {
+    display: flex;
+    flex-direction: column;
+  }
+}

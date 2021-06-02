@@ -1,0 +1,27 @@
+@media (max-width:650px) {
+  .body {
+    display: flex;
+  }
+}
+
+
+.main {
+  display: flex;
+  color: #FFFFFF;
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 3px;
+    margin: 10px;
+  }
+  figcaption {
+    font-weight: bold;
+  }
+  p {
+    font-size: 16px;
+  }
+  .description {
+    display: block;
+  }
+}
+

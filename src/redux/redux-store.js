@@ -6,6 +6,7 @@ import thunkMiddleware from 'redux-thunk';
 import appReducer from "./app-reducer";
 import profileReducer from "./profile-reducer";
 import {dialogReducer} from "./dialog-reducer";
+import {musicReducer} from "./music-reducer";
 
 let reduser = combineReducers({
   post: postReducer,
@@ -14,6 +15,7 @@ let reduser = combineReducers({
   auth: authReducer,
   app: appReducer,
   profile: profileReducer,
+  music: musicReducer,
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

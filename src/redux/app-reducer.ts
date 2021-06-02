@@ -6,11 +6,6 @@ type appInitialState = {
   initializedChecked: boolean
 }
 
-// type actionApp = {
-//   type: string
-//   value: boolean
-// }
-
 const initialState: appInitialState = {
   initializedChecked: false
 }

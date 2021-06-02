@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.main{
+  max-width: 630px;
+  min-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.body {
+  height: 56px;
+  display: flex;
+  border-bottom: #202529;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  img {
+    height: 32px;
+    width: 32px;
+    margin: auto 8px;
+  }
+  figcaption{
+    font-weight: bold;
+    font-size: 16px;
+    color: #fff;
+  }
+  p{
+    color: #aaa
+  }
+}
+.info {
+  padding: 4px 0;
+  margin-left: 6px;
+}
+
+.time {
+  margin: auto 8px auto auto;
+}
