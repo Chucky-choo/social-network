@@ -1,69 +1,99 @@
 import s from './Music.module.scss';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import AudioPlayer from "./audio-player/AudioPlayer";
 import PlayList from "./Play-list/PlayList";
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useRef,} from "react";
+import {PrevOrNextSongIndexAC, SetIsPLaying, SetTrackProgress} from "../../redux/music-reducer";
 
 function Music() {
-  let nowPlayingSongIndex = useSelector(store => store.music.nowPlayingSongIndex)
-  const musicData = useSelector(store => store.music.musicData)
+  const dispatch = useDispatch()
 
-  const [isPlaying, setPlay] = useState(false)
+  const {trackIndex, isPlaying,
+    musicData, isMuted, audio} = useSelector(store => store.music)
+  const intervalRef = useRef();
+  const isReady = useRef(false);
 
-  const audioRef = useRef(new Audio(musicData[nowPlayingSongIndex].src));
+  const startTimer = () => {
+    // Clear any timers already running
+    clearInterval(intervalRef.current);
 
+    intervalRef.current = setInterval(() => {
+      if (audio.ended) {
+        dispatch(PrevOrNextSongIndexAC(true));
+      } else {
+        dispatch(SetTrackProgress());
+      }
+    }, [1000]);
+  };
 
-  const isLoop = () => {
-    audioRef.current.loop = !audioRef.current.loop
-  }
+  const onScrub = (value) => {
+    // Clear any timers already running
+    clearInterval(intervalRef.current);
+    audio.currentTime = value;
+    dispatch(SetTrackProgress());
+  };
 
+  const onScrubEnd = () => {
+    // If not already playing, start
+    if (!isPlaying) {
+      // dispatch(SetIsPLaying(true));
+      dispatch(SetIsPLaying(false));
+    }
+    startTimer();
+  };
 
   useEffect(() => {
-    stopAudio()
-    audioRef.current = new Audio(musicData[nowPlayingSongIndex].src)
-    playAudio()
-  }, [nowPlayingSongIndex])
+    audio.muted = isMuted
+  }, [isMuted])
 
-  const playAudio = () => {
-    setPlay(true)
-    audioRef.current.play()
-  }
+  useEffect(() => {
+    if (isPlaying) {
+      audio.play();
+      startTimer();
+    } else {
+      audio.pause();
+    }
+  }, [isPlaying]);
 
-  const stopAudio = () => {
-    audioRef.current.pause()
-    setPlay(false)
-    audioRef.current.loop = false
-  }
+  // Handles cleanup and setup when changing tracks
+  useEffect(() => {
+    audio.pause();
+    dispatch(SetTrackProgress());
 
-  const playPause = () => {
-    isPlaying ? stopAudio() : playAudio()
-  }
+    if (isReady.current) {
+      audio.play();
+      dispatch(SetIsPLaying(true));
+      startTimer();
+    } else {
+      // Set the isReady ref as true for the next pass
+      isReady.current = true;
+    }
+  }, [trackIndex]);
+
+  useEffect(() => {
+    // Pause and clean up on unmount
+    return () => {
+      audio.pause();
+      clearInterval(intervalRef.current);
+    };
+  }, []);
 
   return (
     <div className={s.main}>
-
-      <header>
-        <h1>Music</h1>
-      </header>
+      <h1>Music</h1>
       <body className={s.body}>
-      <img src={musicData[nowPlayingSongIndex].img} alt=""
+      <img src={musicData[trackIndex].img} alt=""
            className={s.intro}
-           onClick={() => {playPause()}}
+           onClick={() => {dispatch(SetIsPLaying())}}
       />
       {/*<img src={play} alt="" className={s.imgimg}/>*/}
       <PlayList musicData={musicData}/>
       </body>
-      <AudioPlayer isPlaying={isPlaying}
-                   audioRef={audioRef}
-                   isLoop={isLoop}
-                   playPause={playPause}
+      <AudioPlayer onScrub={onScrub}
+                   onScrubEnd={onScrubEnd}
       />
-
     </div>);
 
 }
 
 export default Music;
-
-
-//""/static/media/background-loop-melodic-techno-03-2691.f35b72f0.mp3""

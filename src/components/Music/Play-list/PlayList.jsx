@@ -1,16 +1,22 @@
 import s from './PlayList.module.scss'
-import {useDispatch} from "react-redux";
-import {ChangeNowPlayingSongIndexAC} from "../../../redux/music-reducer";
+import {useDispatch, useSelector} from "react-redux";
+import {ChangeTrackIndexAC} from "../../../redux/music-reducer";
 
 
 const PlayList = ({musicData}) => {
   const dispatch = useDispatch()
+  const {audio} = useSelector(s => s.music)
+
+  const changeIndex = (id) => {
+    audio.pause()
+    dispatch(ChangeTrackIndexAC(id))
+  }
 
   return (
     <div className={s.main}>
       {musicData.map(item => {
         return (
-          <div onClick={() => dispatch(ChangeNowPlayingSongIndexAC(item.id))}
+          <div onClick={() => changeIndex(item.id)}
                key={item.id}
                className={s.body}>
             <img src={item.img} alt=""/>

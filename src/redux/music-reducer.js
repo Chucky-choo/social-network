@@ -4,8 +4,16 @@ import Song2 from '../assets/audio/fluidity-100-ig-edit-4558.mp3'
 
 const CHANGE_SONG = 'CHANGE_SONG'
 const PREV_NEXT_SONG = 'PREV_NEXT_SONG'
+const SET_IS_PLAYING = 'SET_IS_PLAYING'
+const IS_MUTED = 'IS_MUTED'
+const SHUFFLE_ARR = 'SHUFFLE_ARR'
+const SET_TREK_PROGRESS = 'SET_TREK_PROGRESS'
+const CHANGE_VOLUME = 'CHANGE_VOLUME'
+const SET_VOLUME = 'SET_VOLUME'
+
 
 const initialState = {
+  audio: new Audio(song1),
   musicData: [
     {
       name: "Background Loop Melodic Techno #03",
@@ -51,26 +59,74 @@ const initialState = {
       id: 'test4'
     },
   ],
-  nowPlayingSongIndex: 0,
+  trackIndex: 0,
+  isPlaying: false,
+  isMuted: false,
+  trackProgress: 0,
+  volume: 1,
 }
 
 export const musicReducer = (state = initialState, action) => {
+
+  const createNewAudio = (index) => {
+    let myAudio = new Audio(state.musicData[index].src)
+    myAudio.muted = state.isMuted
+    myAudio.volume = state.volume
+    return myAudio
+  }
+
   switch (action.type) {
     case CHANGE_SONG:
-      let arrSongNowPlay = state.musicData.findIndex(p => p.id === action.id)
-      return {...state, nowPlayingSongIndex: arrSongNowPlay}
+      const SongNowPlay = state.musicData.findIndex(p => p.id === action.id)
+      return {
+        ...state, trackIndex: SongNowPlay, isPlaying: false,
+        audio: createNewAudio(SongNowPlay)
+      }
     case PREV_NEXT_SONG: {
-      if (state.nowPlayingSongIndex === 0 && action.value === false) {
+      // if the user wants to go beyond the array
+      if (state.trackIndex === 0 && action.value === false) {
         return {...state}
-      } else if (state.musicData.length === (state.nowPlayingSongIndex + 1) && action.value === true) {
+      } else if (state.musicData.length === (state.trackIndex + 1) && action.value === true) {
         return {...state}
+        // if within the array
       } else {
         return {
-          ...state, nowPlayingSongIndex: action.value ? state.nowPlayingSongIndex + 1
-            : state.nowPlayingSongIndex - 1
+          ...state,
+          trackIndex: action.value ? state.trackIndex + 1
+            : state.trackIndex - 1,
+          audio: action.value
+            ? createNewAudio(state.trackIndex + 1)
+            : createNewAudio(state.trackIndex - 1),
+          isPlaying: false,
         }
       }
     }
+    case SET_IS_PLAYING: {
+      return {...state, isPlaying: !state.isPlaying}
+    }
+    case IS_MUTED: {
+      return {...state, isMuted: !state.isMuted}
+    }
+    // case SHUFFLE_ARR: {
+    //   function shuffle(array) {
+    //     for (let i = array.length - 1; i > 0; i--) {
+    //       let j = Math.floor(Math.random() * (i + 1));
+    //       [array[i], array[j]] = [array[j], array[i]];
+    //     }
+    //   }
+    //   debugger
+    //   return {...state, musicData: shuffle(state.musicData) }
+    // }
+    case SET_TREK_PROGRESS: {
+      return {...state, trackProgress: state.audio.currentTime}
+    }
+    case CHANGE_VOLUME: {
+      return {...state, volume: action.valueVolume}
+    }
+    case SET_VOLUME: {
+      return {...state, audio: {...state.audio, volume: state.volume}}
+    }
+
 
     default:
       return state
@@ -78,7 +134,28 @@ export const musicReducer = (state = initialState, action) => {
 }
 
 
-export const ChangeNowPlayingSongIndexAC = (id) => ({type: CHANGE_SONG, id})
+export const ChangeTrackIndexAC = (id) => ({type: CHANGE_SONG, id})
 export const PrevOrNextSongIndexAC = (value) => ({type: PREV_NEXT_SONG, value})
+export const SetIsPLaying = () => ({type: SET_IS_PLAYING})
+export const SetIsMuted = () => ({type: IS_MUTED})
+//export const shuffleArr = () => ({type: SHUFFLE_ARR})
+export const SetTrackProgress = () => ({type: SET_TREK_PROGRESS})
+export const ChangeVolume = (valueVolume) => ({type: CHANGE_VOLUME, valueVolume})
+export const SetVolume = () => ({type: SET_VOLUME})
+
+
+// export const startTimer = (dispatch) => {
+//   // Clear any timers already running
+//   clearInterval(intervalRef.current);
+//
+//   intervalRef.current = setInterval(() => {
+//     if (audio.ended) {
+//       dispatch(PrevOrNextSongIndexAC(true));
+//     } else {
+//       dispatch(SetTrackProgress());
+//     }
+//   }, [1000]);
+// };
+//
 
 

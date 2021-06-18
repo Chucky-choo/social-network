@@ -6,16 +6,15 @@ import s from './MiddleControls.module.scss'
 
 const MiddleControls = () => {
 
-  let nowPlaySongIndex = useSelector(store => store.music.nowPlayingSongIndex)
-  let obgectAudio = useSelector(store => store.music.musicData[nowPlaySongIndex])
-
+  let trackIndex = useSelector(store => store.music.trackIndex)
+  let objectAudio = useSelector(store => store.music.musicData[trackIndex])
 
   return (
     <div className={s.main}>
-      <img src={obgectAudio.img} alt=""/>
+      <img src={objectAudio.img} alt=""/>
       <div className={s.description}>
-        <figcaption>{obgectAudio.name}</figcaption>
-        <p>{obgectAudio.performer}</p>
+        <figcaption>{objectAudio.name}</figcaption>
+        <p>{objectAudio.performer}</p>
       </div>
       <img src={dislike} alt=""/>
       <img src={like} alt=""/>

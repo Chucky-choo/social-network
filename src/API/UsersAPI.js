@@ -4,8 +4,9 @@ const instance = axios.create({
   baseURL: `https://social-network.samuraijs.com/api/1.0/`,
   headers: {"API-KEY": "a188b859-d862-4f7b-90ec-f9559f88989b"},
   withCredentials: true,
-
 });
+
+// const apiKeyForFreeSound.org = '8SOWDqFQfjSxl00EAv95ZLUer8syplwlEoWu2kby\t'
 
 export const usersAPI = {
   async getUsers(pageSize = 100, currentPage = 1) {
