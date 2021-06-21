@@ -9,7 +9,6 @@ const IS_MUTED = 'IS_MUTED'
 const SHUFFLE_ARR = 'SHUFFLE_ARR'
 const SET_TREK_PROGRESS = 'SET_TREK_PROGRESS'
 const CHANGE_VOLUME = 'CHANGE_VOLUME'
-const SET_VOLUME = 'SET_VOLUME'
 
 
 const initialState = {
@@ -107,26 +106,27 @@ export const musicReducer = (state = initialState, action) => {
     case IS_MUTED: {
       return {...state, isMuted: !state.isMuted}
     }
-    // case SHUFFLE_ARR: {
-    //   function shuffle(array) {
-    //     for (let i = array.length - 1; i > 0; i--) {
-    //       let j = Math.floor(Math.random() * (i + 1));
-    //       [array[i], array[j]] = [array[j], array[i]];
-    //     }
-    //   }
-    //   debugger
-    //   return {...state, musicData: shuffle(state.musicData) }
-    // }
+    case SHUFFLE_ARR: {
+      function shuffle(array) {
+        let newArr = array.filter((item, index) => {
+        return index != action.trackIndex
+        });
+        for (let i = newArr.length - 1; i > 0; i--) {
+          let j = Math.floor(Math.random() * (i + 1));
+          [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
+        }
+        newArr.unshift(state.musicData[action.trackIndex])
+        return newArr
+      }
+      return {...state, musicData: shuffle(state.musicData),
+        trackIndex: 0, isPlaying: true }
+    }
     case SET_TREK_PROGRESS: {
       return {...state, trackProgress: state.audio.currentTime}
     }
     case CHANGE_VOLUME: {
       return {...state, volume: action.valueVolume}
     }
-    case SET_VOLUME: {
-      return {...state, audio: {...state.audio, volume: state.volume}}
-    }
-
 
     default:
       return state
@@ -138,24 +138,6 @@ export const ChangeTrackIndexAC = (id) => ({type: CHANGE_SONG, id})
 export const PrevOrNextSongIndexAC = (value) => ({type: PREV_NEXT_SONG, value})
 export const SetIsPLaying = () => ({type: SET_IS_PLAYING})
 export const SetIsMuted = () => ({type: IS_MUTED})
-//export const shuffleArr = () => ({type: SHUFFLE_ARR})
+export const shuffleArr = (trackIndex) => ({type: SHUFFLE_ARR, trackIndex})
 export const SetTrackProgress = () => ({type: SET_TREK_PROGRESS})
 export const ChangeVolume = (valueVolume) => ({type: CHANGE_VOLUME, valueVolume})
-export const SetVolume = () => ({type: SET_VOLUME})
-
-
-// export const startTimer = (dispatch) => {
-//   // Clear any timers already running
-//   clearInterval(intervalRef.current);
-//
-//   intervalRef.current = setInterval(() => {
-//     if (audio.ended) {
-//       dispatch(PrevOrNextSongIndexAC(true));
-//     } else {
-//       dispatch(SetTrackProgress());
-//     }
-//   }, [1000]);
-// };
-//
-
-

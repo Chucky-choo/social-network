@@ -5,11 +5,15 @@ import {ChangeTrackIndexAC} from "../../../redux/music-reducer";
 
 const PlayList = ({musicData}) => {
   const dispatch = useDispatch()
-  const {audio} = useSelector(s => s.music)
+  const {audio, trackIndex} = useSelector(s => s.music)
+
 
   const changeIndex = (id) => {
-    audio.pause()
-    dispatch(ChangeTrackIndexAC(id))
+    if(id === musicData[trackIndex].id){
+    }else {
+      audio.pause()
+      dispatch(ChangeTrackIndexAC(id))
+    }
   }
 
   return (

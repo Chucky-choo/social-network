@@ -11,7 +11,7 @@ import {useEffect} from "react";
 let RightControl = () => {
   const dispatch = useDispatch()
 
-  const {isMuted, volume, audio} = useSelector(store => store.music)
+  const {isMuted, volume, audio, trackIndex} = useSelector(store => store.music)
 
   const isLoop = () => {
     audio.loop = !audio.loop
@@ -43,7 +43,7 @@ let RightControl = () => {
   return (
     <div className={s.body}>
       <input type="range"
-             value={volume}
+             value={isMuted? 0: volume}
              id="seek"
              min={0}
              max={1}
@@ -61,8 +61,8 @@ let RightControl = () => {
              isLoop()
            }}
       />
-      {/*<img src={random} alt="" onClick={() => {dispatch(shuffleArr())}}/>*/}
-      <img src={random} alt=""/>
+      <img src={random} alt="" onClick={() => {dispatch(shuffleArr(trackIndex))}}/>
+      {/*<img src={random} alt=""/>*/}
     </div>
   )
 

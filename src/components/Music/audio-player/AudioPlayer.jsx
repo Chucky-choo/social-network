@@ -5,7 +5,7 @@ import RightControl from "./RightControls/RightControl";
 import {useSelector} from "react-redux";
 
 
-const AudioPlayer = ({onScrub, onScrubEnd}) => {
+const AudioPlayer = ({onScrub, onScrubEnd, startTimer}) => {
   const duration = useSelector(store => store.music.audio.duration)
   const trackProgress = useSelector(store => store.music.trackProgress)
 
@@ -18,8 +18,7 @@ const AudioPlayer = ({onScrub, onScrubEnd}) => {
              max={duration ? duration : `${duration}`}
              className={s.paperProgres}
              onChange={(e) => onScrub(e.target.value)}
-             onMouseUp={onScrubEnd}
-             onKeyUp={onScrubEnd}
+            onMouseUp={startTimer}
       />
       <div className={s.footer}>
         <LeftControl duration={duration}/>

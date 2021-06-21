@@ -1,5 +1,8 @@
 .main {
   background: #070606;
+  outline: none;
+  border: none;
+
   h1 {
     color: white;
   }
@@ -8,8 +11,6 @@
     height: 50px;
     border-radius: 35px;
     position: inherit;
-    //left: 30%;
-    //top: 20%
   }
 }
 
