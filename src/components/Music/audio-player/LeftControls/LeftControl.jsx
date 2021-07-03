@@ -1,10 +1,11 @@
-import Previus from '../../../../assets/iconsAudio/Previus.png'
-import play from '../../../../assets/iconsAudio/Play.png'
-import pause from '../../../../assets/iconsAudio/pause.png'
-import nextSongImg from '../../../../assets/iconsAudio/nextSong.png'
 import s from './LeftControl.module.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {PrevOrNextSongIndexAC, SetIsPLaying} from "../../../../redux/music-reducer";
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import PauseIcon from '@material-ui/icons/Pause';
+import PreviousIcon from '@material-ui/icons/SkipPrevious';
+import NextIcon from '@material-ui/icons/SkipNext';
+
 
 
 let LeftControl = ({duration}) => {
@@ -37,16 +38,13 @@ let LeftControl = ({duration}) => {
 
   return (
     <div className={s.body}>
-      <img src={Previus} alt=""
-           onClick={() => {prevSong()}}
-      />
-       <img onClick={() => {dispatch(SetIsPLaying())}}
-            src={isPlaying? pause: play} alt=""
-        />
-      <img src={nextSongImg} alt=""
-           onClick={() => {nextSong()}}
-      />
-      <p>{setTime(currentTime, duration)}</p>
+      <PreviousIcon onClick={() => {prevSong()}} />
+      {isPlaying
+        ? <PlayArrowIcon fontSize='large' onClick={() => {dispatch(SetIsPLaying())}}/>
+        : <PauseIcon fontSize='large' onClick={() => {dispatch(SetIsPLaying())}} />
+      }
+      <NextIcon onClick={() => {nextSong()}}/>
+      <p className={s.time}>{setTime(currentTime, duration)}</p>
     </div>
   )
 }

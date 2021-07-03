@@ -12,6 +12,8 @@ function Music() {
     trackIndex, isPlaying,
     musicData, isMuted, audio
   } = useSelector(store => store.music)
+
+
   const intervalRef = useRef();
   const isReady = useRef(false);
 
@@ -27,14 +29,7 @@ function Music() {
     }, [1000]);
   };
 
-  const onScrub = (value) => {
-    // Clear any timers already running
-    clearInterval(intervalRef.current);
-    audio.currentTime = value;
-    dispatch(SetTrackProgress());
-  };
-
-  const pauseSpase = (e) => {
+  const pauseSpace = (e) => {
     if (e.code === "Space") {
       dispatch(SetIsPLaying())
     }
@@ -53,11 +48,8 @@ function Music() {
     }
   }, [isPlaying]);
 
- // Handles cleanup and setup when changing tracks
+  // Handles cleanup and setup when changing tracks
   useEffect(() => {
-    audio.pause();
-    // dispatch(SetTrackProgress());
-
     if (isReady.current) {
       audio.play();
       dispatch(SetIsPLaying());
@@ -79,21 +71,17 @@ function Music() {
   return (
     <div className={s.main}
          tabIndex={0}
-         onKeyPress={(e) => {pauseSpase(e)}}>
-      <h1>Music</h1>
-      <div className={s.body}>
-      <img src={musicData[trackIndex].img} alt=""
-           className={s.intro}
-           onClick={() => {
-             dispatch(SetIsPLaying())
-           }}
-      />
-      {/*<img src={play} alt="" className={s.imgimg}/>*/}
-      <PlayList musicData={musicData}/>
+         onKeyPress={(e) => {pauseSpace(e)}}>
+      {/*<h1>Music</h1>*/}
+      <div className={s.intro}>
+        <img src={musicData[trackIndex].img} alt=""
+             // className={s.intro}
+             onClick={() => {dispatch(SetIsPLaying())}}/>
       </div>
-      <AudioPlayer onScrub={onScrub}
-                  // onScrubEnd={onScrubEnd}
-                   startTimer={startTimer}
+      <PlayList musicData={musicData}/>
+      <AudioPlayer startTimer={startTimer}
+                   intervalRef={intervalRef.current}
+                   audio={audio}
       />
     </div>);
 

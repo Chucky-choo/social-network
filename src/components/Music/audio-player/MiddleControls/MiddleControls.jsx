@@ -1,7 +1,7 @@
 import {useSelector} from "react-redux";
-import dislike from "../../../../assets/iconsAudio/dislike.png";
-import like from "../../../../assets/iconsAudio/Like.png";
 import s from './MiddleControls.module.scss'
+import ThumbDownAltIcon from '@material-ui/icons/ThumbDownAlt';
+import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 
 
 const MiddleControls = () => {
@@ -13,11 +13,13 @@ const MiddleControls = () => {
     <div className={s.main}>
       <img src={objectAudio.img} alt=""/>
       <div className={s.description}>
-        <figcaption>{objectAudio.name}</figcaption>
+        <p className={s.nameSong}>{objectAudio.name}</p>
         <p>{objectAudio.performer}</p>
       </div>
-      <img src={dislike} alt=""/>
-      <img src={like} alt=""/>
+      <div className={s.icons}>
+        <ThumbDownAltIcon/>
+        <ThumbUpAltIcon/>
+      </div>
     </div>
   )
 }

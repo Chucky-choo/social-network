@@ -10,7 +10,7 @@ function Navbar() {
     <NavLink to="/music" activeClassName={s.activeLink}>Music</NavLink>
     <NavLink to="/settings" activeClassName={s.activeLink}>Settings</NavLink>
     <NavLink to="/users" activeClassName={s.activeLink}>Users</NavLink>
-    <a href="https://social-network.samuraijs.com/" activeClassName={s.activeLink}>Document API</a>
+    <a href="https://social-network.samuraijs.com/">Document API</a>
   </div>
   );
 }

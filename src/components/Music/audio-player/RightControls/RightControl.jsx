@@ -1,11 +1,13 @@
 import s from './RightControl.module.scss'
-import turnOn from "../../../../assets/iconsAudio/turn on.png";
-import turnOff from "../../../../assets/iconsAudio/turn off the sound.png";
-import repeat from "../../../../assets/iconsAudio/reapet.png";
-import random from "../../../../assets/iconsAudio/random.png";
 import {useDispatch, useSelector} from "react-redux";
 import {ChangeVolume, SetIsMuted, shuffleArr} from "../../../../redux/music-reducer";
 import {useEffect} from "react";
+import {Slider} from "@material-ui/core";
+import VolumeUp from '@material-ui/icons/VolumeUp';
+import VolumeOffIcon from '@material-ui/icons/VolumeOff';
+import RepeatIcon from '@material-ui/icons/Repeat';
+import RepeatOneIcon from '@material-ui/icons/RepeatOne';
+import ShuffleIcon from '@material-ui/icons/Shuffle';
 
 
 let RightControl = () => {
@@ -27,7 +29,7 @@ let RightControl = () => {
   }
 
   const turnOnTheSound = () => {
-    if(volume === 0) {
+    if (volume === 0) {
       dispatch(ChangeVolume(0.1))
       dispatch(SetIsMuted())
     } else {
@@ -35,38 +37,30 @@ let RightControl = () => {
     }
   }
 
-
   useEffect(() => {
     audio.volume = volume
   }, [volume])
 
   return (
-    <div className={s.body}>
-      <input type="range"
-             value={isMuted? 0: volume}
-             id="seek"
-             min={0}
-             max={1}
-             step={0.1}
-             onChange={(e) => onChangeVolume(e.target.value)}
-        // onMouseUp={onScrubEnd}
-        // onKeyUp={onScrubEnd}
-
+    <div className={s.main}>
+      <Slider
+        value={isMuted ? 0 : volume}
+        onChange={(e, newValue) => onChangeVolume(newValue)}
+        aria-labelledby="continuous-slider"
+        min={0}
+        max={1}
+        step={0.1}
+        className={s.slider}
       />
-      <img src={isMuted ? turnOff : turnOn} alt=""
-           onClick={() => turnOnTheSound()}
-      />
-      <img src={repeat} alt=""
-           onClick={() => {
-             isLoop()
-           }}
-      />
-      <img src={random} alt="" onClick={() => {dispatch(shuffleArr(trackIndex))}}/>
-      {/*<img src={random} alt=""/>*/}
-    </div>
-  )
-
-
+      <div className={s.groupIcons}>
+        {isMuted
+          ? <VolumeOffIcon onClick={() => turnOnTheSound()}/>
+          : <VolumeUp onClick={() => turnOnTheSound()}/>
+        }
+        <RepeatIcon onClick={() => {isLoop()}}/>
+        <ShuffleIcon onClick={() => {dispatch(shuffleArr(trackIndex))}}/>
+      </div>
+    </div>)
 }
 
 export default RightControl

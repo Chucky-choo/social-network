@@ -1,7 +1,6 @@
 import song1 from '../assets/audio/background-loop-melodic-techno-03-2691.mp3'
 import Song2 from '../assets/audio/fluidity-100-ig-edit-4558.mp3'
 
-
 const CHANGE_SONG = 'CHANGE_SONG'
 const PREV_NEXT_SONG = 'PREV_NEXT_SONG'
 const SET_IS_PLAYING = 'SET_IS_PLAYING'
@@ -9,6 +8,8 @@ const IS_MUTED = 'IS_MUTED'
 const SHUFFLE_ARR = 'SHUFFLE_ARR'
 const SET_TREK_PROGRESS = 'SET_TREK_PROGRESS'
 const CHANGE_VOLUME = 'CHANGE_VOLUME'
+const START_TIMER = 'MUSIC_START_TIMER'
+
 
 
 const initialState = {
@@ -57,12 +58,143 @@ const initialState = {
       performer: 'i d n',
       id: 'test4'
     },
+    {
+      name: "Background Loop Melodic Techno #03",
+      src: song1,
+      img: 'https://apimeme.com/meme?meme=Ancient-Aliens&top=&bottom=good',
+      time: '0:46',
+      performer: 'Zen Man',
+      id: 't12441'
+    }, {
+      name: "Fluidity (1:00 IG Edit)",
+      src: Song2,
+      img: 'http://placekitten.com/2020/2020',
+      time: '1:00',
+      performer: 'tobylane',
+      id: '124'
+    }, {
+      name: "newer forget",
+      src: 'https://freesound.org/data/previews/96/96543_7037-hq.mp3',
+      img: 'http://placekitten.com/2000/2000',
+      time: '0:2',
+      performer: 'some girl',
+      id: 't124t1'
+    }, {
+      name: "Magic night",
+      src: 'https://freesound.org/data/previews/96/96527_7037-hq.mp3',
+      img: 'https://apimeme.com/meme?meme=Advice-Dog&top=&bottom=hi',
+      time: '0:4',
+      performer: 'some girl',
+      id: 't124t2'
+    }, {
+      name: 'Your car',
+      src: 'https://freesound.org/data/previews/96/96531_7037-hq.mp3',
+      img: 'http://placekitten.com/2005/2001',
+      time: "0:3",
+      performer: 'some girl',
+      id: 't1243'
+    }, {
+      name: "clash of the gods",
+      src: 'https://freesound.org/data/previews/96/96534_7037-hq.mp3',
+      img: 'http://placekitten.com/2002/2000',
+      time: '0:6',
+      performer: 'i d n',
+      id: 'tes555t4'
+    },
+    {
+      name: "Background Loop Melodic Techno #03",
+      src: song1,
+      img: 'https://apimeme.com/meme?meme=Ancient-Aliens&top=&bottom=good',
+      time: '0:46',
+      performer: 'Zen Man',
+      id: 'te245551'
+    }, {
+      name: "Fluidity (1:00 IG Edit)",
+      src: Song2,
+      img: 'http://placekitten.com/2020/2020',
+      time: '1:00',
+      performer: 'tobylane',
+      id: 't12412'
+    }, {
+      name: "newer forget",
+      src: 'https://freesound.org/data/previews/96/96543_7037-hq.mp3',
+      img: 'http://placekitten.com/2000/2000',
+      time: '0:2',
+      performer: 'some girl',
+      id: 'testfgjd1'
+    }, {
+      name: "Magic night",
+      src: 'https://freesound.org/data/previews/96/96527_7037-hq.mp3',
+      img: 'https://apimeme.com/meme?meme=Advice-Dog&top=&bottom=hi',
+      time: '0:4',
+      performer: 'some girl',
+      id: 'teststeg2'
+    }, {
+      name: 'Your car',
+      src: 'https://freesound.org/data/previews/96/96531_7037-hq.mp3',
+      img: 'http://placekitten.com/2005/2001',
+      time: "0:3",
+      performer: 'some girl',
+      id: 'test3ncvnvc'
+    }, {
+      name: "clash of the gods",
+      src: 'https://freesound.org/data/previews/96/96534_7037-hq.mp3',
+      img: 'http://placekitten.com/2002/2000',
+      time: '0:6',
+      performer: 'i d n',
+      id: 'testsr4'
+    },
+    {
+      name: "Background Loop Melodic Techno #03",
+      src: song1,
+      img: 'https://apimeme.com/meme?meme=Ancient-Aliens&top=&bottom=good',
+      time: '0:46',
+      performer: 'Zen Man',
+      id: 't1244bbxc1'
+    }, {
+      name: "Fluidity (1:00 IG Edit)",
+      src: Song2,
+      img: 'http://placekitten.com/2020/2020',
+      time: '1:00',
+      performer: 'tobylane',
+      id: '12xc4'
+    }, {
+      name: "newer forget",
+      src: 'https://freesound.org/data/previews/96/96543_7037-hq.mp3',
+      img: 'http://placekitten.com/2000/2000',
+      time: '0:2',
+      performer: 'some girl',
+      id: 't124t1xcbxcb'
+    }, {
+      name: "Magic night",
+      src: 'https://freesound.org/data/previews/96/96527_7037-hq.mp3',
+      img: 'https://apimeme.com/meme?meme=Advice-Dog&top=&bottom=hi',
+      time: '0:4',
+      performer: 'some girl',
+      id: 'txcbxcb124t2'
+    }, {
+      name: 'Your car',
+      src: 'https://freesound.org/data/previews/96/96531_7037-hq.mp3',
+      img: 'http://placekitten.com/2005/2001',
+      time: "0:3",
+      performer: 'some girl',
+      id: 't124rderwe3'
+    }, {
+      name: "clash of the gods",
+      src: 'https://freesound.org/data/previews/96/96534_7037-hq.mp3',
+      img: 'http://placekitten.com/2002/2000',
+      time: '0:6',
+      performer: 'i d n',
+      id: 'tes5tew55t4'
+    }
   ],
   trackIndex: 0,
   isPlaying: false,
   isMuted: false,
   trackProgress: 0,
   volume: 1,
+  interval: null,
+  isReady: false,
 }
 
 export const musicReducer = (state = initialState, action) => {
@@ -119,7 +251,7 @@ export const musicReducer = (state = initialState, action) => {
         return newArr
       }
       return {...state, musicData: shuffle(state.musicData),
-        trackIndex: 0, isPlaying: true }
+        trackIndex: 0, isPlaying: !state.isPlaying}
     }
     case SET_TREK_PROGRESS: {
       return {...state, trackProgress: state.audio.currentTime}
@@ -141,3 +273,5 @@ export const SetIsMuted = () => ({type: IS_MUTED})
 export const shuffleArr = (trackIndex) => ({type: SHUFFLE_ARR, trackIndex})
 export const SetTrackProgress = () => ({type: SET_TREK_PROGRESS})
 export const ChangeVolume = (valueVolume) => ({type: CHANGE_VOLUME, valueVolume})
+export const StartTimer = () => ({type: START_TIMER})
+

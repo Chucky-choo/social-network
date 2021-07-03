@@ -37,11 +37,12 @@ let App = ({initializedChecked, initializedTC}) => {
   if (!initializedChecked) {
     return <Praloder/>
   }
+
   return (
     <div className={s.body}>
       <HeaderContainer/>
       <Navbar/>
-      <div className={s.main}>
+      <div className={s.content}>
         <Suspense fallback={<div>Загрузка...</div>}>
           <Route exact path='/'
                  render={ () => <Redirect to={'/Content'} />} />
@@ -65,7 +66,6 @@ const mapStateToProps = (store) => {
     initializedChecked: store.app.initializedChecked
   }
 }
-
 
 export default compose(
   withRouter,

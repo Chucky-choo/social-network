@@ -3,10 +3,18 @@
     pointer-events: none;
 }
 
-@media (max-width:400px) {
-.Logo{
-    display: none;
+@media (max-width: 490px) {
+    .Logo {
+        height: 0;
+        overflow: hidden;
+    }
 }
+
+@media (max-width: 400px) {
+    .Logo, .ava {
+        height: 0;
+        overflow: hidden;
+    }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -19,7 +27,6 @@
     grid-area: h;
     background-color: #282c34;
     height: 60px;
-    max-width: 1200px;
     display: flex;
     justify-content: space-between;
     padding: 0 35px 0 35px;

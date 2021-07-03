@@ -15,8 +15,8 @@ let Header = React.memo(({auth, photoUsers, deleteAuth}) => {
             {auth.profileUserData.fullName}
           </p>
           {(photoUsers)
-            ? <img className={s.ava} src={photoUsers} alt={''}/>
-            : <img className={s.ava} src={kage} alt={''}/> }
+            ? <img className={s.ava} src={photoUsers} alt=''/>
+            : <img className={s.ava} src={kage} alt=''/> }
           <button style={{background: "red"}}
                   type="button"
                   className={s.button}
