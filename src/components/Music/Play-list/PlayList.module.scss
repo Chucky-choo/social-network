@@ -4,7 +4,7 @@
 }
 
 .main {
-  width: 100%;
+  width: 80%;
   max-width: 700px;
   overflow: scroll;
   overflow-x: hidden;
@@ -16,7 +16,7 @@
 @media (max-width: 768px) {
   .main {
     margin: auto;
-    max-width: 100%;
+    width: 100%;
   }
 }
 
