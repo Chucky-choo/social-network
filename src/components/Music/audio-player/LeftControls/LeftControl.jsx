@@ -40,8 +40,8 @@ let LeftControl = ({duration}) => {
     <div className={s.body}>
       <PreviousIcon onClick={() => {prevSong()}} />
       {isPlaying
-        ? <PlayArrowIcon fontSize='large' onClick={() => {dispatch(SetIsPLaying())}}/>
-        : <PauseIcon fontSize='large' onClick={() => {dispatch(SetIsPLaying())}} />
+        ? <PauseIcon fontSize='large' onClick={() => {dispatch(SetIsPLaying())}}/>
+        :<PlayArrowIcon fontSize='large' onClick={() => {dispatch(SetIsPLaying())}}/>
       }
       <NextIcon onClick={() => {nextSong()}}/>
       <p className={s.time}>{setTime(currentTime, duration)}</p>

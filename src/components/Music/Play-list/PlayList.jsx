@@ -5,9 +5,9 @@ import classNames from "classnames/bind";
 import {useState} from "react";
 
 
-const PlayList = ({musicData}) => {
+const PlayList = ({musicData, audio, trackIndex}) => {
   const dispatch = useDispatch()
-  const {audio, trackIndex} = useSelector(s => s.music)
+ // const {audio, trackIndex} = useSelector(s => s.music)
 
   const changeIndex = (id) => {
     if (id !== musicData[trackIndex].id) {

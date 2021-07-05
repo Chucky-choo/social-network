@@ -32,6 +32,12 @@
     .groupIcons {
       display: flex;
       justify-content: space-around;
+      .white_repeat {
+        color: #FFFFFF;
+      }
+      .grey_repeat {
+        color: #8f8f8f;
+      }
 
       svg {
         margin: 0 7px;
@@ -40,39 +46,5 @@
     }
 }
 
-
-
-
-
-
-  //.range {
-  //  overflow: hidden;
-  //  width: 110px;
-  //  height: 5px;
-  //  -webkit-appearance: none;
-  //  background: transparent;
-  //  outline: none;
-  //  border-radius: 5px;
-  //}
-  //
-  //.range::-webkit-slider-thumb {
-  //  -webkit-appearance: none;
-  //  width: 17px;
-  //  height: 17px;
-  //  border-radius: 50%;
-  //  background: #ffffff;
-  //  cursor: default;
-  //  padding-bottom: 6px;
-  //  margin-bottom: 6px;
-  //  box-shadow: -80px 0 0 80px #43e5f7;
-  //}
-  //
-  //input[type=range]::-webkit-slider-runnable-track {
-  //  width: 100%;
-  //  height: 2.4px;
-  //  padding-bottom: 14px;
-  //  // box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  //  background: #7c7c7c;
-  //}
 
 }

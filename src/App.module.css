@@ -24,8 +24,8 @@
 
 .content {
     grid-area: c;
-    background: #92cd77;
-    height: calc(100vh - 130px);
+    background: #15240e;
+   height: calc(100vh - 130px);
 }
 
 @media (max-width: 870px) {
@@ -40,4 +40,10 @@
     .content {
         height: calc(100vh - 164px);
     }
+}
+
+.music {
+    grid-area: c;
+    background: #92cd77;
+    height: calc(100vh - 130px);
 }

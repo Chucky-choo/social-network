@@ -3,14 +3,20 @@ import {useDispatch, useSelector} from "react-redux";
 import AudioPlayer from "./audio-player/AudioPlayer";
 import PlayList from "./Play-list/PlayList";
 import {useEffect, useRef} from "react";
-import {PrevOrNextSongIndexAC, SetIsPLaying, SetTrackProgress} from "../../redux/music-reducer";
+import {
+  ChangeTrackIndexAC,
+  PrevOrNextSongIndexAC,
+  SetIsPLaying,
+  SetTrackIndex,
+  SetTrackProgress
+} from "../../redux/music-reducer";
 
 function Music() {
   const dispatch = useDispatch()
 
   const {
     trackIndex, isPlaying,
-    musicData, isMuted, audio
+    musicData, isMuted, audio, isRepeat
   } = useSelector(store => store.music)
 
 
@@ -21,7 +27,11 @@ function Music() {
     // Clear any timers already running
     clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
+      // if(audio.ended && trackIndex === (musicData.length - 1) && isRepeat === 1) {
+      //   dispatch(ChangeTrackIndexAC(musicData[0].id))
+      // }
       if (audio.ended) {
+
         dispatch(PrevOrNextSongIndexAC(true));
       } else {
         dispatch(SetTrackProgress());
@@ -35,9 +45,7 @@ function Music() {
     }
   }
 
-  useEffect(() => {
-    audio.muted = isMuted
-  }, [isMuted])
+  useEffect(() => {audio.muted = isMuted}, [isMuted])
 
   useEffect(() => {
     if (isPlaying) {
@@ -72,17 +80,14 @@ function Music() {
     <div className={s.main}
          tabIndex={0}
          onKeyPress={(e) => {pauseSpace(e)}}>
-      {/*<h1>Music</h1>*/}
       <div className={s.intro}>
         <img src={musicData[trackIndex].img} alt=""
-             // className={s.intro}
              onClick={() => {dispatch(SetIsPLaying())}}/>
       </div>
-      <PlayList musicData={musicData}/>
+      <PlayList musicData={musicData} audio={audio} trackIndex={trackIndex}/>
       <AudioPlayer startTimer={startTimer}
                    intervalRef={intervalRef.current}
-                   audio={audio}
-      />
+                   audio={audio}/>
     </div>);
 
 }

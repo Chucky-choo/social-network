@@ -8,8 +8,7 @@ const IS_MUTED = 'IS_MUTED'
 const SHUFFLE_ARR = 'SHUFFLE_ARR'
 const SET_TREK_PROGRESS = 'SET_TREK_PROGRESS'
 const CHANGE_VOLUME = 'CHANGE_VOLUME'
-const START_TIMER = 'MUSIC_START_TIMER'
-
+const SET_REPEAT = 'SET_REPEAT'
 
 
 const initialState = {
@@ -192,17 +191,22 @@ const initialState = {
   isPlaying: false,
   isMuted: false,
   trackProgress: 0,
-  volume: 1,
+  volume: 0.1,
   interval: null,
   isReady: false,
+  //if 0 no repeat, if 1 repeat all list, if 2 repeat one song
+  isRepeat: 0,
+  loopSong: false,
 }
 
 export const musicReducer = (state = initialState, action) => {
 
-  const createNewAudio = (index) => {
+  const createNewAudio = (index, loop = false, currentTime = 0) => {
     let myAudio = new Audio(state.musicData[index].src)
     myAudio.muted = state.isMuted
     myAudio.volume = state.volume
+    myAudio.loop = (state.isRepeat === 2)
+    myAudio.currentTime = currentTime
     return myAudio
   }
 
@@ -214,13 +218,20 @@ export const musicReducer = (state = initialState, action) => {
         audio: createNewAudio(SongNowPlay)
       }
     case PREV_NEXT_SONG: {
+      //if loop arr
+      if (state.musicData.length === (state.trackIndex + 1)
+        && state.isRepeat === 1
+        && action.value === true) {
+        return {...state, trackIndex: 0, audio: createNewAudio(0), isPlaying: false}
+      }
       // if the user wants to go beyond the array
-      if (state.trackIndex === 0 && action.value === false) {
+      else if (state.trackIndex === 0 && action.value === false) {
         return {...state}
       } else if (state.musicData.length === (state.trackIndex + 1) && action.value === true) {
         return {...state}
-        // if within the array
-      } else {
+      }
+      // if within the array
+      else {
         return {
           ...state,
           trackIndex: action.value ? state.trackIndex + 1
@@ -241,7 +252,7 @@ export const musicReducer = (state = initialState, action) => {
     case SHUFFLE_ARR: {
       function shuffle(array) {
         let newArr = array.filter((item, index) => {
-        return index != action.trackIndex
+          return index != action.trackIndex
         });
         for (let i = newArr.length - 1; i > 0; i--) {
           let j = Math.floor(Math.random() * (i + 1));
@@ -250,14 +261,31 @@ export const musicReducer = (state = initialState, action) => {
         newArr.unshift(state.musicData[action.trackIndex])
         return newArr
       }
-      return {...state, musicData: shuffle(state.musicData),
-        trackIndex: 0, isPlaying: !state.isPlaying}
+
+      return {
+        ...state, musicData: shuffle(state.musicData),
+        trackIndex: 0, isPlaying: !state.isPlaying
+      }
     }
     case SET_TREK_PROGRESS: {
       return {...state, trackProgress: state.audio.currentTime}
     }
     case CHANGE_VOLUME: {
       return {...state, volume: action.valueVolume}
+    }
+    case SET_REPEAT: {
+      if (action.value === 3) {
+        return {...state, isRepeat: 0}
+      // } else if (action.value === 2) {
+      //   return {
+      //     ...state,
+      //     isRepeat: action.value,
+      //     audio: createNewAudio(state.trackIndex, true, state.trackProgress),
+      //     isPlaying: true
+      //   }
+      } else {
+        return {...state, isRepeat: action.value}
+      }
     }
 
     default:
@@ -273,5 +301,5 @@ export const SetIsMuted = () => ({type: IS_MUTED})
 export const shuffleArr = (trackIndex) => ({type: SHUFFLE_ARR, trackIndex})
 export const SetTrackProgress = () => ({type: SET_TREK_PROGRESS})
 export const ChangeVolume = (valueVolume) => ({type: CHANGE_VOLUME, valueVolume})
-export const StartTimer = () => ({type: START_TIMER})
+export const SetRepeat = (value) => ({type: SET_REPEAT, value})
 

@@ -1,6 +1,6 @@
 import s from './RightControl.module.scss'
 import {useDispatch, useSelector} from "react-redux";
-import {ChangeVolume, SetIsMuted, shuffleArr} from "../../../../redux/music-reducer";
+import {ChangeVolume, SetIsMuted, SetRepeat, shuffleArr} from "../../../../redux/music-reducer";
 import {useEffect} from "react";
 import {Slider} from "@material-ui/core";
 import VolumeUp from '@material-ui/icons/VolumeUp';
@@ -8,15 +8,21 @@ import VolumeOffIcon from '@material-ui/icons/VolumeOff';
 import RepeatIcon from '@material-ui/icons/Repeat';
 import RepeatOneIcon from '@material-ui/icons/RepeatOne';
 import ShuffleIcon from '@material-ui/icons/Shuffle';
+import classNames from "classnames/bind";
+import {bool} from "yup";
 
 
 let RightControl = () => {
   const dispatch = useDispatch()
 
-  const {isMuted, volume, audio, trackIndex} = useSelector(store => store.music)
+  const {isMuted, volume, audio, trackIndex, isRepeat} = useSelector(store => store.music)
 
-  const isLoop = () => {
-    audio.loop = !audio.loop
+  const changeRepeat = () => {
+    // if(isRepeat === 1) {
+    //   audio.pause()
+    // }
+    dispatch(SetRepeat(isRepeat + 1))
+    //isRepeat === 1 ? audio.loop = true :audio.loop = false
   }
 
   const onChangeVolume = (e) => {
@@ -37,9 +43,31 @@ let RightControl = () => {
     }
   }
 
+  const cx = classNames.bind(s)
+
+  const repeatClasses = cx({
+    white_repeat: isRepeat === 1,
+    gray_repeat: isRepeat === 0
+  })
+
+
+  useEffect(() => {audio.volume = volume}, [volume])
+
+  const setLoop = boolean => audio.loop = boolean
+
   useEffect(() => {
-    audio.volume = volume
-  }, [volume])
+   if(isRepeat === 0) {
+     setLoop(false)
+   }else if(isRepeat === 1) {
+     setLoop(false)
+   }else if(isRepeat === 2) {
+     setLoop(true)
+   }
+  }, [isRepeat])
+
+
+
+
 
   return (
     <div className={s.main}>
@@ -57,8 +85,15 @@ let RightControl = () => {
           ? <VolumeOffIcon onClick={() => turnOnTheSound()}/>
           : <VolumeUp onClick={() => turnOnTheSound()}/>
         }
-        <RepeatIcon onClick={() => {isLoop()}}/>
-        <ShuffleIcon onClick={() => {dispatch(shuffleArr(trackIndex))}}/>
+        {isRepeat === 2
+          ? <RepeatOneIcon className={s.white_repeat}
+                           onClick={() => {changeRepeat()}}/>
+          : <RepeatIcon className={repeatClasses}
+                        onClick={() => {changeRepeat()}}/>
+        }
+        <ShuffleIcon onClick={() => {
+          dispatch(shuffleArr(trackIndex))
+        }}/>
       </div>
     </div>)
 }
