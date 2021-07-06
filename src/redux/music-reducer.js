@@ -276,13 +276,6 @@ export const musicReducer = (state = initialState, action) => {
     case SET_REPEAT: {
       if (action.value === 3) {
         return {...state, isRepeat: 0}
-      // } else if (action.value === 2) {
-      //   return {
-      //     ...state,
-      //     isRepeat: action.value,
-      //     audio: createNewAudio(state.trackIndex, true, state.trackProgress),
-      //     isPlaying: true
-      //   }
       } else {
         return {...state, isRepeat: action.value}
       }
