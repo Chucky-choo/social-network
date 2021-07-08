@@ -77,18 +77,21 @@ function Music() {
   }, []);
 
   return (
-    <div className={s.main}
-         tabIndex={0}
-         onKeyPress={(e) => {pauseSpace(e)}}>
-      <div className={s.intro}>
-        <img src={musicData[trackIndex].img} alt=""
-             onClick={() => {dispatch(SetIsPLaying())}}/>
+    <div className={s.content_music}>
+      <div className={s.main}
+           tabIndex={0}
+           onKeyPress={(e) => {pauseSpace(e)}}>
+        <div className={s.intro}>
+          <img src={musicData[trackIndex].img} alt=""
+               onClick={() => {dispatch(SetIsPLaying())}}/>
+        </div>
+        <PlayList musicData={musicData} audio={audio} trackIndex={trackIndex}/>
+        <AudioPlayer startTimer={startTimer}
+                     intervalRef={intervalRef.current}
+                     audio={audio}/>
       </div>
-      <PlayList musicData={musicData} audio={audio} trackIndex={trackIndex}/>
-      <AudioPlayer startTimer={startTimer}
-                   intervalRef={intervalRef.current}
-                   audio={audio}/>
-    </div>);
+    </div>
+    );
 
 }
 

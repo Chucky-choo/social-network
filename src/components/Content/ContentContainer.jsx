@@ -1,13 +1,16 @@
-import Content from "./Content";
 import {connect} from "react-redux";
 import React, {useEffect, useState} from 'react'
 import {getProfileThunkKreator, getStatusTC} from "../../redux/profile-reducer";
 import {withRouter} from "react-router";
 import RedirectHoc from "../../HOC/hoc";
 import {compose} from "redux";
+import s from "./Content.module.css";
+import TitlePicture from "./Profile/titlePicture/TitlePicture";
+import ProfileContainer from "./Profile/ProfileContaine";
+import AreaNewPost from "./AreaNewPost/NewPostContainer";
+import Posts from "./Posts/Posts";
 
-
-let ContentContainerApi = (props) => {
+const ContentContainerApi = (props) => {
   let matchId = props.match.params.userId
   const [userId, setUsersId] = useState(matchId)
   if (!userId) {
@@ -24,11 +27,14 @@ let ContentContainerApi = (props) => {
   }, [matchId])
 
 
-  return (<Content pictureArr={props.pictureArr}
-                   statusValue={props.statusValue}
-                   profileUserData={props.profileUserData}
-                   updateStatus={props.updateStatus}
-                   postDate={props.postDate}/>)
+  return (<div className={s.main}>
+    <TitlePicture pictureArr={props.pictureArr}/>
+    <ProfileContainer statusValue={props.statusValue}
+                      profileUserData={props.profileUserData}
+                      updateStatus={props.updateStatus}/>
+    <AreaNewPost/>
+    <Posts postDate={props.postDate}/>
+  </div>)
 }
 
 

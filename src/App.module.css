@@ -10,7 +10,6 @@
         grid-template-rows: 60px 100%;
         border: none;
         outline: none;
-
     }
 }
 
@@ -22,10 +21,16 @@
     color: #ffffff;
 }
 
-.content {
+.normal_mode {
     grid-area: c;
     background: #15240e;
-   height: calc(100vh - 130px);
+    height: 100%;
+}
+
+.content_music {
+    grid-area: c;
+    background: #15240e;
+    height: calc(100vh - 130px);
 }
 
 @media (max-width: 870px) {
@@ -37,7 +42,7 @@
 }
 
 @media (max-width: 870px) {
-    .content {
+    .content_music {
         height: calc(100vh - 164px);
     }
 }

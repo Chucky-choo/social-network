@@ -9,6 +9,7 @@ import {initializedTC} from "./redux/app-reducer";
 import {compose} from "redux";
 import EditingProfileContainer from "./components/EditingProfile/EditingProfileContainer";
 import {Redirect} from "react-router";
+import classNames from "classnames/bind";
 
 
 
@@ -38,11 +39,18 @@ let App = ({initializedChecked, initializedTC}) => {
     return <Praloder/>
   }
 
+  // const cx = classNames.bind(s);
+  // const contentMode = cx({
+  //   normal_mode:
+  //   content_music:
+  // })
+  // }
+
   return (
     <div className={s.body}>
       <HeaderContainer/>
       <Navbar/>
-      <div className={s.content}>
+      <div className={s.normal_mode}>
         <Suspense fallback={<div>Загрузка...</div>}>
           <Route exact path='/'
                  render={ () => <Redirect to={'/Content'} />} />
