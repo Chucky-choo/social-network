@@ -39,13 +39,6 @@ let App = ({initializedChecked, initializedTC}) => {
     return <Praloder/>
   }
 
-  // const cx = classNames.bind(s);
-  // const contentMode = cx({
-  //   normal_mode:
-  //   content_music:
-  // })
-  // }
-
   return (
     <div className={s.body}>
       <HeaderContainer/>

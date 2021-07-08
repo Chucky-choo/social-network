@@ -1,0 +1,69 @@
+@media (max-width: 870px) {
+  .main {
+    grid-area: n;
+    display: flex;
+    background: #212121;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+@media (min-width: 871px) {
+  .main {
+    grid-area: n;
+    display: flex;
+    flex-direction: column;
+    max-width: 250px;
+    background: #282c34;
+    min-width: 100%;
+    overflow: scroll;
+    max-height: calc(100vh - 130px);
+  }
+}
+
+.disable_scroll::-webkit-scrollbar {
+  width: 10px;
+  background-color: transparent;
+  height: 100%;
+}
+
+.active_scroll::-webkit-scrollbar {
+  width: 10px;
+  background-color: transparent;
+  height: 100%;
+}
+
+.active_scroll::-webkit-scrollbar-thumb {
+  background-color: #606060;
+}
+
+@media (max-width: 450px) {
+  .main {
+    grid-area: n;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: 2px;
+    background: #212121;
+    height: 100%;
+    overflow: hidden;
+  }
+
+
+  a {
+    width: 70px;
+  }
+}
+
+.main a {
+  margin: 6px;
+  color: #8e8e8e;
+  text-decoration: none;
+}
+
+.main a.activeLink {
+  font-size: 20px;
+  color: #ffffff;
+}
+

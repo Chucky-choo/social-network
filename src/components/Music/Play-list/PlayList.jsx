@@ -7,7 +7,7 @@ import {useState} from "react";
 
 const PlayList = ({musicData, audio, trackIndex}) => {
   const dispatch = useDispatch()
- // const {audio, trackIndex} = useSelector(s => s.music)
+  // const {audio, trackIndex} = useSelector(s => s.music)
 
   const changeIndex = (id) => {
     if (id !== musicData[trackIndex].id) {
@@ -35,17 +35,14 @@ const PlayList = ({musicData, audio, trackIndex}) => {
 
   return (
     <div className={ulClasses}
-      //  onMouseEnter={setMouseEnter(true)}
-      onMouseOver={() => {setMouseEnter(true)}}
-         onMouseOut={() => {setMouseEnter(false)}}
-    >
+         onMouseOver={() => {setMouseEnter(true)}}
+         onMouseOut={() => {setMouseEnter(false)}}>
       {musicData.map(item => {
         return (
           <div key={item.id}
                className={liClasses(item.id)}>
             <img src={item.img} alt=""
-                 onClick={() => changeIndex(item.id)}
-            />
+                 onClick={() => changeIndex(item.id)}/>
             <div className={s.info}>
               <figcaption>{item.name}</figcaption>
               <p>{item.performer}</p>
