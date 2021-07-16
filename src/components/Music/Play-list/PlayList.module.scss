@@ -16,9 +16,16 @@
   .main {
     margin: auto;
     width: 100%;
-   height: calc(100% - 380px);
+    height: calc(100% - 380px);
   }
 }
+
+@media (max-width: 450px) {
+  .main {
+    margin: 40px 4px 4px 30px;
+  }
+}
+
 
 .disable_scroll::-webkit-scrollbar {
   width: 10px;

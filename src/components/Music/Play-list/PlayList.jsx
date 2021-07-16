@@ -1,5 +1,5 @@
 import s from './PlayList.module.scss'
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {ChangeTrackIndexAC} from "../../../redux/music-reducer";
 import classNames from "classnames/bind";
 import {useState} from "react";
@@ -7,7 +7,6 @@ import {useState} from "react";
 
 const PlayList = ({musicData, audio, trackIndex}) => {
   const dispatch = useDispatch()
-  // const {audio, trackIndex} = useSelector(s => s.music)
 
   const changeIndex = (id) => {
     if (id !== musicData[trackIndex].id) {

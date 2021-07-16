@@ -5,5 +5,5 @@
 
 .socialImg {
     grid-area: icons;
-    padding: 10px 15px 10px 15px;
+    margin: 5px;
 }

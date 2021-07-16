@@ -1,0 +1,13 @@
+.newPost {
+
+  display: flex;
+  justify-content: center;
+
+  input[type=file] {
+    display: none;
+  }
+
+  .button {
+    margin: 10px;
+  }
+}

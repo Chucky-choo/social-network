@@ -30,6 +30,7 @@
     display: flex;
     justify-content: space-between;
     padding: 0 35px 0 35px;
+    align-items: center;
 }
 
 @keyframes Logo-spin {
@@ -37,7 +38,7 @@
         transform: rotate(0deg);
     }
     to {
-        transform: rotate(360deg);
+        transform: rotate(660deg);
     }
 }
 
@@ -65,15 +66,27 @@
     height: 50px;
 }
 
-.button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 12px 25px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+.btnOut{
+   height: 45px;
+}
+
+.btnOut:hover {
+    transition: 1s;
+    color: #cd0a26;
+    background: #1c0202;
+}
+
+.btnIn {
+    height: 45px;
+}
+
+.btnIn:hover {
+    transition: 0.5s;
+    color: #53b027;
+}
+
+.navLink {
+    display: none;
 }
 
 @media (max-width: 320px) {

@@ -9,8 +9,6 @@ import {initializedTC} from "./redux/app-reducer";
 import {compose} from "redux";
 import EditingProfileContainer from "./components/EditingProfile/EditingProfileContainer";
 import {Redirect} from "react-router";
-import classNames from "classnames/bind";
-
 
 
 const ContentContainer = lazy(() => import('./components/Content/ContentContainer'))

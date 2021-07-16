@@ -1,33 +1,41 @@
-import s from './Profile.module.css';
-import Kage from '../../../assets/imeges/kage.png'
-import {StatusProfile} from "./StausProfile/Status-profile";
-import LinkIcons from "./linkIcon/link-ikon";
+import {useSelector} from "react-redux";
+import React from 'react'
+import s from "./Profile.module.scss";
+import Kage from "../../../assets/imeges/kage.png";
 import {NavLink} from "react-router-dom";
+import LinkIcons from "./linkIcon/link-ikon";
+import {StatusProfile} from "./StausProfile/Status-profile";
 import Preloader from "../../Gif/Preloader/Praloder";
+import Button from '@material-ui/core/Button';
 
-let Profile = ({profileUserData, updateStatus, statusValue, matchId, isLoading}) => {
+const Profile = ({matchId}) => {
+  const {profileUserData, statusValue, isLoading} = useSelector(store => store.profile)
 
-
-  if(isLoading === true){
-    return <Preloader />
+  if (isLoading === true) {
+    return <Preloader/>
   }
 
   return (
     <div className={s.header}>
       <img className={s.ava} src={profileUserData.photos.large || Kage} alt={''}/>
-      <div className={s.profilText}>
-        <h3>{profileUserData.fullName}</h3>
+      <div className={s.info_top}>
+        <span>{profileUserData.fullName}</span>
+        {!matchId &&
+          <Button variant="outlined" size="small">
+            <NavLink to="/EditingProfile">Edit Profile</NavLink>
+          </Button>}
+      </div>
+      <div className={s.info_middle}>
         <p>{profileUserData.aboutMe}</p>
         {profileUserData.lookingForAJobDescription
-          ? <p>I'm looking for a job</p>
-          : <p>not looking for a job</p>}
+          ? <p>I'm looking for a job📣</p>
+          : <p>not looking for a job😎</p>}
         <p>{profileUserData.lookingForAJobDescription}</p>
-        {!matchId && <NavLink to="/EditingProfile">Edit Profile</NavLink>}
       </div>
+      <StatusProfile status={statusValue}/>
       <LinkIcons contacts={profileUserData.contacts}/>
-      <StatusProfile status={statusValue} updateStatus={updateStatus} matchId={matchId}/>
     </div>
-  );
+  )
 }
 
-export default Profile;
+export default Profile

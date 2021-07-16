@@ -9,7 +9,7 @@ import twit from "../../../../assets/imeges/twit.svg";
 import email from "../../../../assets/imeges/mail.svg";
 
 
-let LinkIcons = ({contacts}) => {
+const LinkIcons = ({contacts}) => {
   
   let pictureLink = (src, img) => {
 
@@ -18,7 +18,8 @@ let LinkIcons = ({contacts}) => {
     }
 
     return (
-      !src ? null
+      !src
+        ? null
         : <a href={test(src)}>
           <img src={img} alt=""/>
         </a>

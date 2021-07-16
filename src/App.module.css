@@ -24,14 +24,8 @@
 
 .normal_mode {
     grid-area: c;
-    background: #15240e;
+    background: #eefcfc;
     height: 100%;
-}
-
-.content_music {
-    grid-area: c;
-    background: #15240e;
-    height: calc(100vh - 130px);
 }
 
 @media (max-width: 870px) {

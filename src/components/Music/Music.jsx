@@ -3,22 +3,13 @@ import {useDispatch, useSelector} from "react-redux";
 import AudioPlayer from "./audio-player/AudioPlayer";
 import PlayList from "./Play-list/PlayList";
 import {useEffect, useRef} from "react";
-import {
-  ChangeTrackIndexAC,
-  PrevOrNextSongIndexAC,
-  SetIsPLaying,
-  SetTrackIndex,
-  SetTrackProgress
-} from "../../redux/music-reducer";
+import {PrevOrNextSongIndexAC, SetIsPLaying, SetTrackProgress} from "../../redux/music-reducer";
 
 function Music() {
   const dispatch = useDispatch()
 
-  const {
-    trackIndex, isPlaying,
-    musicData, isMuted, audio, isRepeat
-  } = useSelector(store => store.music)
-
+  const {trackIndex, isPlaying,
+    musicData, isMuted, audio} = useSelector(store => store.music)
 
   const intervalRef = useRef();
   const isReady = useRef(false);
@@ -27,11 +18,7 @@ function Music() {
     // Clear any timers already running
     clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
-      // if(audio.ended && trackIndex === (musicData.length - 1) && isRepeat === 1) {
-      //   dispatch(ChangeTrackIndexAC(musicData[0].id))
-      // }
       if (audio.ended) {
-
         dispatch(PrevOrNextSongIndexAC(true));
       } else {
         dispatch(SetTrackProgress());
@@ -61,7 +48,6 @@ function Music() {
     if (isReady.current) {
       audio.play();
       dispatch(SetIsPLaying());
-      // startTimer();
     } else {
       // Set the isReady ref as true for the next pass
       isReady.current = true;

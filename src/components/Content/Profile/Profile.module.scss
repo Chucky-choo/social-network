@@ -1,0 +1,80 @@
+.header {
+  margin: 10px auto 0;
+  display: grid;
+  grid-template-areas:
+                "ava info_top"
+                "ava info_middle"
+                "ava status"
+                "ava icons";
+  grid-template-columns: 2fr 5fr;
+  grid-template-rows: 1fr 1fr 1fr auto;
+
+  .ava {
+    grid-area: ava;
+    max-width: 240px;
+    border-radius: 60%;
+    padding: 20px 10px;
+  }
+
+  .info_top {
+    grid-area: info_top;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      font-family: 'Satisfy', cursive;
+      color: #474747;
+      font-size: 28px;
+      line-height: 32px;
+      margin: 10px;
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+      font-size: 15px;
+      width: auto;
+    }
+  }
+
+  .info_middle {
+    grid-area: info_middle;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid;
+    border-top-color: rgb(219, 219, 219);
+    border-bottom: 1px solid;
+    border-bottom-color: rgb(219, 219, 219);
+    :nth-child(n) {
+      margin: 0 10px;
+      font-size: 17px;
+    }
+  }
+
+  .status {
+    padding: 0 16px 21px;
+    grid-area: status;
+    display: flex;
+    border-bottom: 1px solid;
+    border-bottom-color: rgb(219, 219, 219);
+    p {
+      margin: 10px 0 0 20px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .header {
+    display: grid;
+    grid-template-areas:
+                "ava info_top"
+                "status status"
+                "info_middle info_middle"
+                "icons icons";
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: auto auto 1fr auto;
+  }
+}
+

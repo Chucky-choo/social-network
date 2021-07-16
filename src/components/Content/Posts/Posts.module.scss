@@ -1,0 +1,41 @@
+
+.body {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 15px;
+
+  .body__photo {
+    margin: 0 auto;
+
+    .photo {
+     margin: 0 auto;
+      height: 300px;
+      width: 300px;
+      transition: .2s ease-in-out;
+    }
+
+    .hidden_info {
+      width: 150px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      transform: translate(75px, -170px);
+      margin-right: -70px;
+      opacity: 0;
+      svg {
+        margin: 0 10px;
+      }
+    }
+  }
+
+
+  .body__photo:hover .photo{
+    -webkit-filter: brightness(40%);
+  }
+
+  .body__photo:hover .hidden_info{
+    color: #ffffff;
+    opacity: 1;
+    cursor: default;
+  }
+
+}

@@ -4,15 +4,25 @@ import {getProfileThunkKreator, getStatusTC} from "../../redux/profile-reducer";
 import {withRouter} from "react-router";
 import RedirectHoc from "../../HOC/hoc";
 import {compose} from "redux";
-import s from "./Content.module.css";
+import s from "./Content.module.scss";
 import TitlePicture from "./Profile/titlePicture/TitlePicture";
-import ProfileContainer from "./Profile/ProfileContaine";
-import AreaNewPost from "./AreaNewPost/NewPostContainer";
+import Profile from "./Profile/Profile";
 import Posts from "./Posts/Posts";
+import Popup from "./Popup/Popup";
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
+import SendIcon from '@material-ui/icons/Send';
+import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import NewPost from "./NewPost/NewPost";
 
 const ContentContainerApi = (props) => {
   let matchId = props.match.params.userId
+
   const [userId, setUsersId] = useState(matchId)
+  const [activePopup, setActivePopup] = useState(true)
+
+
   if (!userId) {
     setUsersId(props.InitialsUserId)
   }
@@ -22,19 +32,34 @@ const ContentContainerApi = (props) => {
     props.getProfileThunk(userId)
   }, [props.InitialsUserId, userId])
 
-  useEffect(() => {
-    setUsersId(matchId)
-  }, [matchId])
+  useEffect(() => {setUsersId(matchId)}, [matchId])
 
 
-  return (<div className={s.main}>
-    <TitlePicture pictureArr={props.pictureArr}/>
-    <ProfileContainer statusValue={props.statusValue}
-                      profileUserData={props.profileUserData}
-                      updateStatus={props.updateStatus}/>
-    <AreaNewPost/>
-    <Posts postDate={props.postDate}/>
-  </div>)
+  return (
+    <div className={s.main}>
+      <TitlePicture pictureArr={props.pictureArr}/>
+      <Profile/>
+      <NewPost/>
+      <Posts/>
+      <Popup active={activePopup}
+             setActive={setActivePopup}>
+        <div className={s.popup}>
+          <div className={s.popup__header}>
+            <img src={props.photoUsers} alt=""/>
+            <p>{props.fullNameUser}</p>
+            <MoreHorizIcon/>
+          </div>
+          <img src={props.popupInfo.photo} alt=""/>
+          <div className={s.popup__footer}>
+            <FavoriteBorderIcon/>
+            <ChatBubbleOutlineIcon/>
+            <SendIcon/>
+            <BookmarkBorderIcon/>
+          </div>
+        </div>
+      </Popup>
+    </div>
+  )
 }
 
 
@@ -43,6 +68,9 @@ let mapStateToProps = (store) => {
     pictureArr: store.post.imgTemaData,
     postDate: store.post.postDate,
     InitialsUserId: store.auth.profileUserData.userId,
+    popupInfo: store.post.popupInfo,
+    fullNameUser: store.profile.profileUserData.fullName,
+    photoUsers: store.profile.profileUserData.photos.small
   }
 }
 
@@ -50,6 +78,5 @@ export default compose(
   connect(mapStateToProps,
     {getStatus: getStatusTC, getProfileThunk: getProfileThunkKreator}),
   RedirectHoc,
-  withRouter
-)(ContentContainerApi)
+  withRouter)(ContentContainerApi)
 
