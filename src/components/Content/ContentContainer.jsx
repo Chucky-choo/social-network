@@ -1,4 +1,4 @@
-import {connect} from "react-redux";
+import {connect, useSelector} from "react-redux";
 import React, {useEffect, useState} from 'react'
 import {getProfileThunkKreator, getStatusTC} from "../../redux/profile-reducer";
 import {withRouter} from "react-router";
@@ -18,6 +18,7 @@ import NewPost from "./NewPost/NewPost";
 
 const ContentContainerApi = (props) => {
   let matchId = props.match.params.userId
+  const idCurrentUser = useSelector(store => store.auth.id)
 
   const [userId, setUsersId] = useState(matchId)
   const [activePopup, setActivePopup] = useState(true)
@@ -32,32 +33,40 @@ const ContentContainerApi = (props) => {
     props.getProfileThunk(userId)
   }, [props.InitialsUserId, userId])
 
-  useEffect(() => {setUsersId(matchId)}, [matchId])
+  useEffect(() => {
+    setUsersId(matchId)
+  }, [matchId])
 
 
   return (
     <div className={s.main}>
       <TitlePicture pictureArr={props.pictureArr}/>
       <Profile/>
-      <NewPost/>
-      <Posts/>
-      <Popup active={activePopup}
-             setActive={setActivePopup}>
-        <div className={s.popup}>
-          <div className={s.popup__header}>
-            <img src={props.photoUsers} alt=""/>
-            <p>{props.fullNameUser}</p>
-            <MoreHorizIcon/>
-          </div>
-          <img src={props.popupInfo.photo} alt=""/>
-          <div className={s.popup__footer}>
-            <FavoriteBorderIcon/>
-            <ChatBubbleOutlineIcon/>
-            <SendIcon/>
-            <BookmarkBorderIcon/>
-          </div>
-        </div>
-      </Popup>
+      {(userId === idCurrentUser)
+        ? <>
+          <NewPost/>
+          <Posts/>
+          <Popup active={activePopup}
+                 setActive={setActivePopup}>
+            <div className={s.popup}>
+              <div className={s.popup__header}>
+                <img src={props.photoUsers} alt=""/>
+                <p>{props.fullNameUser}</p>
+                <MoreHorizIcon/>
+              </div>
+              <img src={props.popupInfo.photo} alt=""/>
+              <div className={s.popup__footer}>
+                <FavoriteBorderIcon/>
+                <ChatBubbleOutlineIcon/>
+                <SendIcon/>
+                <BookmarkBorderIcon/>
+              </div>
+            </div>
+          </Popup>
+        </>
+        : null
+      }
+
     </div>
   )
 }

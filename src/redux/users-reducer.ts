@@ -8,7 +8,7 @@ const CHANGE_PAGE = "my_app/users/CHANGE-PAGE"
 const SET_TOTAL_USERS = "my_app/users/SET-TOTAL-USERS"
 const TOGGLE_IS_FETCHING = "my_app/users/TOGGLE_IS_FETCHING"
 const BLOCKED_FOLLOWING = 'my_app/users/BLOCKED_FOLLOWING'
-
+const FILTER_USER_DATA = 'FILTER_USER_DATA'
 
 type UserType = {
     name: string
@@ -18,16 +18,19 @@ type UserType = {
     followed: boolean
 }
 
-let initialState = {
+const initialState = {
     usersData: [] as Array<UserType>,
     totalCount: 0,
     pageSize: 25,
     currentPage: 1,
+    term: '',
+    friend: '',
     isFetching: false,
-    blockFollow: [] as Array<any>, // реба взнати
+    blockFollow: [] as Array<any>,
+
 }
 
-let usersReducer = (state = initialState, action: any): typeof initialState => {
+const usersReducer = (state = initialState, action: any): typeof initialState => {
     switch (action.type) {
         case CHANGE_FOLLOW: {
             const idx = state.usersData.findIndex((el) => el.id === action.id);
@@ -48,10 +51,7 @@ let usersReducer = (state = initialState, action: any): typeof initialState => {
             }
         }
         case CHANGE_PAGE: {
-            return {
-                ...state,
-                currentPage: action.numbPage
-            }
+            return {...state, currentPage: action.numbPage}
         }
         case SET_TOTAL_USERS: {
             return {
@@ -69,6 +69,10 @@ let usersReducer = (state = initialState, action: any): typeof initialState => {
                     ? [...state.blockFollow, action.usersId]
                     : state.blockFollow.filter(el => el !== action.usersId)
             }
+        }
+        case FILTER_USER_DATA: {
+            return {...state, friend: action.friend, term: action.term,
+                pageSize: action.pageSize}
         }
         default:
             return state
@@ -100,11 +104,16 @@ export const blockFollowAC = (usersId: number, isFetching: boolean): BlockFollow
     type: BLOCKED_FOLLOWING, usersId, isFetching
 })
 
+type filterType = { type: typeof FILTER_USER_DATA, term: string, friend: string, pageSize: number }
+export const filterUsersData = (term: string, friend: string, pageSize: number): filterType => (
+    {type: FILTER_USER_DATA, friend, term, pageSize}
+)
 
-export const getUsersThunkCreators = (pageSize: number, currentPage: number) => {
+
+export const getUsersThunkCreators = (pageSize: number, currentPage: number, term: string, friend: string) => {
     return (dispatch: any) => {
         dispatch(toggleChang(true))
-        usersAPI.getUsers(pageSize, currentPage)
+        usersAPI.getUsers(pageSize, currentPage, term, friend)
             .then(response => {
                 dispatch(toggleChang(false))
                 dispatch(setUsersCount(response.totalCount))
@@ -112,6 +121,8 @@ export const getUsersThunkCreators = (pageSize: number, currentPage: number) => 
             })
     }
 }
+
+
 
 export const changeFollowThunkCreators = (id: number, followed: boolean) => {
     return async (dispatch: any) => {

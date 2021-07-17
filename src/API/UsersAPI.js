@@ -6,11 +6,11 @@ const instance = axios.create({
   withCredentials: true,
 });
 
-// const apiKeyForFreeSound.org = '8SOWDqFQfjSxl00EAv95ZLUer8syplwlEoWu2kby\t'
 
 export const usersAPI = {
-  async getUsers(pageSize = 100, currentPage = 1) {
-    const response = await instance.get(`users?count=${pageSize}&page=${currentPage}`)
+  async getUsers(pageSize = 30, currentPage = 1, term = '', friend = '') {
+    const response = await instance
+      .get(`users?count=${pageSize}&page=${currentPage}&term=${term}&friend=${friend}`)
     return response.data
   },
 

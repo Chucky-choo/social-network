@@ -19,8 +19,8 @@ function Navbar() {
     <div className={ulClasses}
          onMouseOver={() => {setMouseEnter(true)}}
          onMouseOut={() => {setMouseEnter(false)}}>
-      <NavLink to="/music" activeClassName={s.activeLink}>Music</NavLink>
       <NavLink to="/Content" activeClassName={s.activeLink}>Content</NavLink>
+      <NavLink to="/music" activeClassName={s.activeLink}>Music</NavLink>
       <NavLink to="/users" activeClassName={s.activeLink}>Users</NavLink>
       <NavLink to="/dialogs" activeClassName={s.activeLink}>Dialogs</NavLink>
       <NavLink to="/news" activeClassName={s.activeLink}>News</NavLink>
