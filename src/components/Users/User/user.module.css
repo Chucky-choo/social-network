@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(345px, 1fr));
     gap: 2px;
-    overflow: scroll;
+    overflow: hidden;
 }
 
 .img {

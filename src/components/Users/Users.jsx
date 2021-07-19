@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import Paginator from "../Paginator/Paginator";
+import Paginator from "../../Elements/Paginator/Paginator";
 import User from "./User/User";
 import {
   getBlockFollow, getCurrentPage, getIsFetching,

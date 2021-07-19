@@ -28,7 +28,7 @@ const FilterUserData = () => {
     >
       {({isSubmitting}) => (
         <Form>
-          <CustomField name='term' type='text' text='filter'/>
+          <CustomField name='term' type='text' text='filter' placeholder={'Name'}/>
           <CustomField name='pageSize' type='number' text='page size'/>
           <Field name="friend" as="select" className="my-select">
             <option value="">All</option>

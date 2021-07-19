@@ -1,0 +1,28 @@
+.input__container {
+  display: grid;
+  justify-content: center;
+  margin: 15px 0;
+
+  label {
+    height: auto;
+    margin: 10px auto;
+  }
+
+  .input__field{
+
+  }
+
+  input {
+    height: 50px;
+    width: 200px;
+    border-radius: 5px;
+    margin: 0 auto;
+  }
+}
+
+
+.errors {
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+}
