@@ -134,7 +134,6 @@ export const postAuthLoginTC = (login: any) => {
         dispatch(initializedAC(false))
         let response = await authAPI.authLogin(login)
         if (response.resultCode === 0) {
-            debugger
             dispatch(setId(response.data.userId))
             let res = await usersAPI.getProfile(response.data.userId)
             dispatch(setUsersProfile(res.data))

@@ -27,7 +27,7 @@ const Profile = ({matchId}) => {
       </div>
       <div className={s.info_middle}>
         <p>{profileUserData.aboutMe}</p>
-        {profileUserData.lookingForAJobDescription
+        {profileUserData.lookingForAJob
           ? <p>I'm looking for a job📣</p>
           : <p>not looking for a job😎</p>}
         <p>{profileUserData.lookingForAJobDescription}</p>

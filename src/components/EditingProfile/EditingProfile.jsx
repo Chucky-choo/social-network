@@ -33,12 +33,14 @@ const [isEditing, setEditing] = useState(true)
         {...profileUserData, contacts: {...profileUserData.contacts}}
       }
               onSubmit={async (values) => {
-                let res = await putProfile(values)
-                if (res.resultCode === 0) {
-                  setEditing(false)
-                } else {
-                  setMessage(res.messages)
-                }
+                alert(JSON.stringify(values, null, 2));
+
+                // let res = await putProfile(values)
+                // if (res.resultCode === 0) {
+                //   setEditing(false)
+                // } else {
+                //   setMessage(res.messages)
+                // }
               }
               }
       >

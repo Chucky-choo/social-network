@@ -1,12 +1,14 @@
 import React from "react";
-import s from "./user.module.css"
+import s from "./user.module.scss"
 import shadow from '../../../assets/imeges/kage.png'
 import {NavLink} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {changeFollowThunkCreators} from "../../../redux/users-reducer";
+import Button from "@material-ui/core/Button";
 
 
-let User = ({usersData, blockFollow}) => {
+const  User = ({usersData, blockFollow}) => {
+const setFollow = changeFollowThunkCreators
 
   const dispatch = useDispatch()
 
@@ -21,16 +23,17 @@ let User = ({usersData, blockFollow}) => {
                        src={el.photos.small || shadow}
                        alt=""/>
                 </NavLink>
-                <button onClick={() => {
-                  dispatch(changeFollowThunkCreators(el.id, el.followed))
-                }}
+                <Button variant="outlined"
+                        size="small"
+                        onClick={() => {dispatch(setFollow(el.id, el.followed))}}
+                        className={s.btn}
                         disabled={blockFollow.some(id => id === el.id)}>
                   {el.followed ? "Unfollow" : "Follow"}
-                </button>
+                </Button>
               </div>
-              <div >
-                <div className={s.profileInfo}>{el.name}</div>
-                <div className={s.profileInfo}>{el.status}</div>
+              <div className={s.profileInfo}>
+                <span className={s.name}>{el.name}</span>
+                <span>{el.status}</span>
               </div>
             </div>
           )
