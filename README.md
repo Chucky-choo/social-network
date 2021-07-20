@@ -1,4 +1,4 @@
-# in order to see all the functionality you need to log in to your account.
+# in order to see all the functionality you need to log in to my account.
 login / email: pkavulych@gmail.com
 
 password: dedafu47
