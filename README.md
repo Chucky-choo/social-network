@@ -1,7 +1,10 @@
-### in order to see all the functionality you need to log in to your account.
+# in order to see all the functionality you need to log in to your account.
 login / email: pkavulych@gmail.com
+
 password: dedafu47
 
+#Or register on this site and then use my front end
+https://social-network.samuraijs.com/signUp
 
 # Getting Started with Create React App
 
