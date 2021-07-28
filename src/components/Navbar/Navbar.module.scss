@@ -1,4 +1,4 @@
-@media (max-width: 870px) {
+@media (max-width: 1030px) {
   .main {
     grid-area: n;
     display: flex;
@@ -10,7 +10,7 @@
   }
 }
 
-@media (min-width: 871px) {
+@media (min-width: 1031px) {
   .main {
     grid-area: n;
     display: flex;
@@ -20,6 +20,7 @@
     min-width: 100%;
     overflow: scroll;
     max-height: calc(100vh - 130px);
+    padding-left: 20px;
   }
 }
 

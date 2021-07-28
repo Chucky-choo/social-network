@@ -7,6 +7,10 @@ import LinkIcons from "./linkIcon/link-ikon";
 import {StatusProfile} from "./StausProfile/Status-profile";
 import Preloader from "../../Gif/Preloader/Praloder";
 import Button from '@material-ui/core/Button';
+import BtnStyled from "../../../Elements/BtnStyled/BtnStyled";
+import AddAlarmIcon from '@material-ui/icons/AddAlarm';
+import color from "color";
+
 
 const Profile = ({matchId}) => {
   const {profileUserData, statusValue, isLoading} = useSelector(store => store.profile)
@@ -21,9 +25,14 @@ const Profile = ({matchId}) => {
       <div className={s.info_top}>
         <span>{profileUserData.fullName}</span>
         {!matchId &&
-          <Button variant="outlined" size="small">
-            <NavLink to="/EditingProfile">Edit Profile</NavLink>
-          </Button>}
+
+         <BtnStyled primary>
+          <NavLink style={{ color: "white" }} to="/EditingProfile">Edit Profile</NavLink>
+        </BtnStyled >
+          // <Button variant="outlined" size="small">
+          //   <NavLink to="/EditingProfile">Edit Profile</NavLink>
+          // </Button>
+        }
       </div>
       <div className={s.info_middle}>
         <p>{profileUserData.aboutMe}</p>

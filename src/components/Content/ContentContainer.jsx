@@ -8,20 +8,52 @@ import s from "./Content.module.scss";
 import TitlePicture from "./Profile/titlePicture/TitlePicture";
 import Profile from "./Profile/Profile";
 import Posts from "./Posts/Posts";
-import Popup from "./Popup/Popup";
+import Popup from "../../Elements/Popup/Popup";
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import SendIcon from '@material-ui/icons/Send';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import NewPost from "./NewPost/NewPost";
+import styled from 'styled-components'
+
+
+const PopupPostContainer = styled.div`
+  padding: 10px 10px 0 10px;
+
+  svg {
+    font-size: 35px;
+  }
+`
+const PopupHeader = styled.div`
+  display: grid;
+  grid-template-columns: 45px 1fr auto;
+
+  img {
+    width: 32px;
+    border-radius: 50px;
+  }
+`
+
+const PopupPostImg = styled.img`
+  max-height: 300px;
+  width: 100%;
+`
+
+
+const PopupFooter = styled.div`
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 50px 50px 1fr 40px;
+`
+
 
 const ContentContainerApi = (props) => {
   let matchId = props.match.params.userId
   const idCurrentUser = useSelector(store => store.auth.id)
 
   const [userId, setUsersId] = useState(matchId)
-  const [activePopup, setActivePopup] = useState(true)
+  const {isActivePopup} = useSelector(store => store.post)
 
 
   if (!userId) {
@@ -33,9 +65,7 @@ const ContentContainerApi = (props) => {
     props.getProfileThunk(userId)
   }, [props.InitialsUserId, userId])
 
-  useEffect(() => {
-    setUsersId(matchId)
-  }, [matchId])
+  useEffect(() => {setUsersId(matchId)}, [matchId])
 
 
   return (
@@ -46,23 +76,23 @@ const ContentContainerApi = (props) => {
         ? <>
           <NewPost/>
           <Posts/>
-          <Popup active={activePopup}
-                 setActive={setActivePopup}>
-            <div className={s.popup}>
-              <div className={s.popup__header}>
+          <Popup isActive={isActivePopup}>
+            <PopupPostContainer>
+              <PopupHeader>
                 <img src={props.photoUsers} alt=""/>
                 <p>{props.fullNameUser}</p>
                 <MoreHorizIcon/>
-              </div>
-              <img src={props.popupInfo.photo} alt=""/>
-              <div className={s.popup__footer}>
+              </PopupHeader>
+              <PopupPostImg src={props.popupInfo.photo} alt=""/>
+              <PopupFooter>
                 <FavoriteBorderIcon/>
                 <ChatBubbleOutlineIcon/>
                 <SendIcon/>
                 <BookmarkBorderIcon/>
-              </div>
-            </div>
+              </PopupFooter>
+            </PopupPostContainer>
           </Popup>
+
         </>
         : null
       }

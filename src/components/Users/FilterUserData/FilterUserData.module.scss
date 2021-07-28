@@ -1,14 +1,18 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 
   .container__select {
     width: 200px;
-    margin: 0 auto;
+    margin: 0 10px;
   }
+}
 
-  .btn {
-    color: #64c5e1;
-    display: flex;
-    justify-content: center;
-    margin: 10px auto;
-    border: 1px solid #64c5e1
+@media (max-width: 645px) {
+  .container {
+   display: flex;
+    flex-direction: column;
   }
-
+}

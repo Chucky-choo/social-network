@@ -1,50 +1,7 @@
-.main {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(345px, 1fr));
-    gap: 2px;
-    overflow: hidden;
-}
-
-.img {
-    width: 75px;
-    height: 75px;
-    border-radius: 50px;
-    margin: 10px;
-}
-
-.flex {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    margin: 20px;
-    border: 2px solid #282c34;
-    border-radius: 50px;
-    height: 170px;
-}
-
-.flex div {
-    margin: 10px;
-}
-
-.lef {
-    display: flex;
-    flex-direction: column
-}
-
-.profileInfo {
-    max-width: 100%;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-
-    .name {
-        font-family: 'Satisfy', cursive;
-    }
-    span{
-        margin: 0 auto 10px;
-    }
-}
-
-.btn {
-    color: #000000;
-    transition: 0.4s;
+.container {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 8px;
+  overflow: hidden;
 }

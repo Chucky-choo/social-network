@@ -19,13 +19,13 @@ function Navbar() {
     <div className={ulClasses}
          onMouseOver={() => {setMouseEnter(true)}}
          onMouseOut={() => {setMouseEnter(false)}}>
-      <NavLink to="/Content" activeClassName={s.activeLink}>Content</NavLink>
-      <NavLink to="/music" activeClassName={s.activeLink}>Music</NavLink>
-      <NavLink to="/users" activeClassName={s.activeLink}>Users</NavLink>
-      <NavLink to="/dialogs" activeClassName={s.activeLink}>Dialogs</NavLink>
-      <NavLink to="/news" activeClassName={s.activeLink}>News</NavLink>
-      <NavLink to="/settings" activeClassName={s.activeLink}>Settings</NavLink>
-      <a href="https://social-network.samuraijs.com/">Document API</a>
+      <NavLink to="/Content" activeClassName={s.activeLink}>content</NavLink>
+      <NavLink to="/music" activeClassName={s.activeLink}>music</NavLink>
+      <NavLink to="/users" activeClassName={s.activeLink}>users</NavLink>
+      <NavLink to="/dialogs" activeClassName={s.activeLink}>dialogs</NavLink>
+      <NavLink to="/news" activeClassName={s.activeLink}>news</NavLink>
+      <NavLink to="/settings" activeClassName={s.activeLink}>settings</NavLink>
+      <a href="https://social-network.samuraijs.com/">document API</a>
     </div>
   );
 }

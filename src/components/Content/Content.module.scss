@@ -1,7 +1,7 @@
 .main {
   overflow-x: hidden;
   min-height: calc(100vh - 60px);
-  margin: 0 auto 30px;
+  margin: 0 auto;
   max-width: 935px;
   background: #effdfd;
 
@@ -16,31 +16,6 @@
   img {
     max-height: 300px;
     width: 100%;
-  }
-
-  .popup {
-    padding: 10px 10px 0 10px;
-
-    .popup__header {
-      display: grid;
-      grid-template-columns: 45px 1fr auto;
-
-      img {
-        width: 32px;
-        border-radius: 50px;
-      }
-
-    }
-
-    .popup__footer {
-      margin-top: 10px;
-      display: grid;
-      grid-template-columns: 50px 50px 1fr 40px;
-    }
-
-    svg {
-      font-size: 35px;
-    }
   }
 }
 

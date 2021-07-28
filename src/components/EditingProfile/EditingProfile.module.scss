@@ -1,0 +1,55 @@
+.main {
+h1{
+  width: 200px;
+  margin: 0 auto;
+}
+
+  h4 {
+    margin: 0 auto;
+  }
+}
+
+
+
+.editAva {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+}
+
+.form {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  margin: 10px auto 15px auto;
+  background: #61dafb;
+  border-radius: 50px;
+}
+
+.field {
+  width: 150px;
+}
+
+.form input {
+  margin: 5px;
+}
+
+.form button {
+  margin: 0 auto 15px;
+width: 150px;
+}
+
+.wornings {
+  background: red;
+}
+
+input[type=file] {
+  display: none;
+}

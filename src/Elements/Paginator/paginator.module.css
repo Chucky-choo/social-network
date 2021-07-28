@@ -1,7 +1,7 @@
 .main {
     display: flex;
     justify-content: center;
-    margin: 10px auto 0 auto;
+    margin: 10px auto 20px auto;
 }
 
 .button__group{
@@ -9,7 +9,10 @@
 }
 
 .selectedPages {
-    font: bold italic 110% serif;
-    background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);
+
+    /*background: linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);*/
+    background: #0094f5;
+    color: #fff;
+
 }
 

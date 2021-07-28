@@ -1,8 +1,10 @@
 import {addPhotoToData, putPostPhoto} from "../../../redux/post-reducer";
 import {useDispatch} from "react-redux";
-import Button from "@material-ui/core/Button";
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import s from './NewPost.module.scss'
+import BtnUpload from "../../../Elements/BtnUpload/BtnUpload";
+import React from "react";
+import BtnStyled from "../../../Elements/BtnStyled/BtnStyled";
+import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 
 
 const NewPost = () => {
@@ -22,15 +24,10 @@ const NewPost = () => {
 
   return (
     <div className={s.newPost}>
-      <Button
-        variant="contained"
-        color="default"
-        onClick={triggerInput}
-        className={s.button}
-        startIcon={<CloudUploadIcon/>}
-      >
+      <BtnStyled click={triggerInput}>
+        <AddAPhotoIcon suze='small'/>
         Upload
-      </Button>
+      </ BtnStyled>
       <input type='file' onChange={PostPhotoSelected}/>
     </div>
   )

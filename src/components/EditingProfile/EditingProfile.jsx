@@ -1,8 +1,13 @@
 import React, {useState} from 'react'
 import {Formik, Form} from 'formik';
-import s from './EditingProfile.module.css'
+import s from './EditingProfile.module.scss'
 import {Redirect} from "react-router";
 import CustomField from "../../Elements/CustomField/CustomField";
+import Button from "@material-ui/core/Button";
+import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+import BtnUpload from "../../Elements/BtnUpload/BtnUpload";
+import BtnStyled from "../../Elements/BtnStyled/BtnStyled";
+import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 
 
 export let EditingProfile = ({putPhoto, profileUserData, putProfile}) => {
@@ -13,19 +18,28 @@ const [isEditing, setEditing] = useState(true)
     return <Redirect to='/Content'/>
   }
 
-
   const onMainPhotoSelected = (e) => {
     if (e.target.files.length) {
       putPhoto(e.target.files[0])
     }
   }
 
+  const triggerInput = () => {
+    const input = document.querySelector('input')
+    input.click()
+  }
+
+
   return (
-    <div>
+    <div className={s.main}>
       <h1>Edit Profile</h1>
-      <p>your id is {profileUserData.userId}</p>
+   {/*<p>your id is {profileUserData.userId}</p>*/}
       <div className={s.editAva}>
         <p>Chang photo profile</p>
+        <BtnStyled onClick={triggerInput}>
+          <AddAPhotoIcon/>
+          Upload
+        </BtnStyled>
         {<input type="file" onChange={onMainPhotoSelected}/>}
       </div>
 
@@ -33,14 +47,12 @@ const [isEditing, setEditing] = useState(true)
         {...profileUserData, contacts: {...profileUserData.contacts}}
       }
               onSubmit={async (values) => {
-                alert(JSON.stringify(values, null, 2));
-
-                // let res = await putProfile(values)
-                // if (res.resultCode === 0) {
-                //   setEditing(false)
-                // } else {
-                //   setMessage(res.messages)
-                // }
+                let res = await putProfile(values)
+                if (res.resultCode === 0) {
+                  setEditing(false)
+                } else {
+                  setMessage(res.messages)
+                }
               }
               }
       >
@@ -61,7 +73,7 @@ const [isEditing, setEditing] = useState(true)
           <CustomField text={'youtube'} name={"contacts.youtube"} placeholder={"youtube"}/>
           <CustomField text={'mainLink'} name={"contacts.mainLink"} placeholder={"mainLink"}/>
           <p className={s.wornings}>{errorMessage}</p>
-          <button type="submit">Submit</button>
+          <Button variant="outlined" type="submit">Submit</Button>
         </Form>
       </Formik>
     </div>

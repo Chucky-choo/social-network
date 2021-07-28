@@ -1,25 +1,26 @@
 import s from './Popup.module.scss'
 import {useDispatch, useSelector} from "react-redux";
-import {setActivePopup} from "../../../redux/post-reducer";
+import {setActivePopup} from "../../redux/post-reducer";
+import ReactDom from "react-dom";
 
-const Popup = ({children}) => {
-  const {isActivePopup} = useSelector(store => store.post)
+const Popup = ({children, isActive}) => {
+
   const dispatch = useDispatch()
 
-  if (!isActivePopup) {
+  if (!isActive) {
     return null
   }
 
-  return (
+  return ReactDom.createPortal(
     <div className={s.popup}
          onClick={() => dispatch(setActivePopup(false))}>
       <div className={s.popup__modal}
            onClick={e => e.stopPropagation()}>
         { children }
       </div>
-    </div>
+    </div>,
+    document.getElementById('portal')
   )
-
 }
 
 export default Popup
