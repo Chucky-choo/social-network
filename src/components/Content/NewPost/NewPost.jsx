@@ -11,12 +11,14 @@ const NewPost = () => {
   const dispatch = useDispatch()
 
   const PostPhotoSelected = (e) => {
+    debugger
     if (e.target.files.length) {
       dispatch(addPhotoToData(e.target.files[0]))
     }
   }
 
   const triggerInput = () => {
+    debugger
     const input = document.querySelector('input')
     input.click()
   }
@@ -24,7 +26,7 @@ const NewPost = () => {
 
   return (
     <div className={s.newPost}>
-      <BtnStyled click={triggerInput}>
+      <BtnStyled onClick={triggerInput}>
         <AddAPhotoIcon suze='small'/>
         Upload
       </ BtnStyled>

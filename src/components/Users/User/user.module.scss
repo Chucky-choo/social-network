@@ -1,7 +1,9 @@
 .container {
+  margin-bottom: 20px;
   padding: 20px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 8px;
-  overflow: hidden;
+  gap: 24px;
+  overflow-y: scroll;
+  height: calc(100vh - 216px)
 }

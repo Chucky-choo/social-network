@@ -1,14 +1,13 @@
 import s from './App.module.css';
-import Navbar from './components/Navbar/Navbar';
 import {Route, withRouter} from "react-router-dom";
-import HeaderContainer from "./components/Header/HeaderContainet";
 import React, {useEffect, Suspense, lazy} from 'react';
-import Praloder from "./components/Gif/Preloader/Praloder";
+import Praloder from "./Elements/Preloader/Praloder";
 import {connect} from "react-redux";
 import {initializedTC} from "./redux/app-reducer";
 import {compose} from "redux";
 import EditingProfileContainer from "./components/EditingProfile/EditingProfileContainer";
 import {Redirect} from "react-router";
+import Header from "./components/Header/Header";
 
 
 const ContentContainer = lazy(() => import('./components/Content/ContentContainer'))
@@ -39,8 +38,7 @@ let App = ({initializedChecked, initializedTC}) => {
 
   return (
     <div className={s.body}>
-      <HeaderContainer/>
-      <Navbar/>
+      <Header />
       <div className={s.normal_mode}>
         <Suspense fallback={<div>Загрузка...</div>}>
           <Route exact path='/'

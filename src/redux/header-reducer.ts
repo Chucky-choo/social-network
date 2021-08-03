@@ -10,6 +10,7 @@ const ERROR_MESSAGE = 'header/ERROR_MESSAGE'
 const CHANGE_PHOTO_PROFILE = 'profile/CHANGE_PHOTO_PROFILE'
 const SET_CAPTCHA = 'profile/SET_CAPTCHA'
 const SET_ID = 'SET_ID'
+const SET_ACTIVE_CONTENT = 'SET_ACTIVE_CONTENT'
 
 export type contactsType = {
     facebook: null | string
@@ -57,12 +58,13 @@ let initialState = {
         fullName: "Sub Zero",
         userId: null,
         photos: {
-        small: "https://social-network.samuraijs.com/activecontent/images/users/2/user-small.jpg?v=0",
+        small: "https://www.nicepng.com/png/full/413-4138963_unknown-person-unknown-person-png.png",
             large: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/4c8bec71-cdc3-43cd-a782-9db62157a7cf/d7kqa5o-7a0f0af6-373c-4157-96d0-c8d7f6c2a759.jpg/v1/fill/w_1024,h_576,q_75,strp/mortal_kombat_x_scorpion_1080p_by_sakis25_d7kqa5o-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3siaGVpZ2h0IjoiPD01NzYiLCJwYXRoIjoiXC9mXC80YzhiZWM3MS1jZGMzLTQzY2QtYTc4Mi05ZGI2MjE1N2E3Y2ZcL2Q3a3FhNW8tN2EwZjBhZjYtMzczYy00MTU3LTk2ZDAtYzhkN2Y2YzJhNzU5LmpwZyIsIndpZHRoIjoiPD0xMDI0In1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.NM1lVU_WdAmMz9nII2aBXGZK4zku_SRG3ETL2Av7d6Q"
     }
 } as null | ProfileUserType,
     errorMessage: null as null | string,
     captchaURL: null as null | string,
+    activeContent: null as null | string,
 }
 
 type initialStateType = typeof initialState
@@ -93,6 +95,9 @@ let authReducer = (state = initialState , action: any): initialStateType => {
         }
         case SET_ID:
             return {...state, id: action.userId, isAuth: true}
+        case SET_ACTIVE_CONTENT: {
+            return {...state, activeContent: action.value}
+        }
         default:
             return state
     }
@@ -114,6 +119,9 @@ const errorMessageAC = (message: string): ErrorMessageType => ({type: ERROR_MESS
 const setCaptcha = (captcha: string) => ({type: SET_CAPTCHA, captcha})
 
 const setId = (userId: number) => ({type: SET_ID, userId})
+
+
+export const setActiveContent = (value: string) => ({type: SET_ACTIVE_CONTENT, value})
 
 
 export const getAuthMeThunkCreator = () => {

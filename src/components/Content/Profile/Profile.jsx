@@ -5,7 +5,7 @@ import Kage from "../../../assets/imeges/kage.png";
 import {NavLink} from "react-router-dom";
 import LinkIcons from "./linkIcon/link-ikon";
 import {StatusProfile} from "./StausProfile/Status-profile";
-import Preloader from "../../Gif/Preloader/Praloder";
+import Preloader from "../../../Elements/Preloader/Praloder";
 import Button from '@material-ui/core/Button';
 import BtnStyled from "../../../Elements/BtnStyled/BtnStyled";
 import AddAlarmIcon from '@material-ui/icons/AddAlarm';

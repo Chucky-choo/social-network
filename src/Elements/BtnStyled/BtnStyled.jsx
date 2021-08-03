@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 
 const Btn = styled.button`
-  background: ${props => props.primary ? props.theme.colors.primary : 'transparent'};
+  background: ${props => props.primary ? '#0094f5' : 'transparent'};
   color: ${props => props.primary ? 'white' : 'black'};
   border: ${props => props.primary ? 'none' : '1px solid black'};
   font-size: 1em;

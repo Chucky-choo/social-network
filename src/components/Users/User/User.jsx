@@ -17,6 +17,7 @@ import styled from 'styled-components'
 
 const useStyles = makeStyles({
   root: {
+    minHeight: 450,
     minWidth: 200,
     maxWidth: 300,
     display: 'flex',
@@ -29,6 +30,7 @@ const useStyles = makeStyles({
   content: {
     textDecoration: 'none',
     color: 'black',
+    maxHeight: 320,
     ['@media (max-width:450px)']: { // eslint-disable-line no-useless-computed-key
       width: '100%',
     },

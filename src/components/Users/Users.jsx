@@ -4,9 +4,10 @@ import User from "./User/User";
 import {getBlockFollow, getCurrentPage, getIsFetching,
   getPageSize, getTotalCount, getUsersReselect} from "../../redux/selektor";
 import {useDispatch, useSelector} from "react-redux";
-import Preloader from "../Gif/Preloader/Praloder";
+import Preloader from "../../Elements/Preloader/Praloder";
 import {changPage, getUsersThunkCreators} from "../../redux/users-reducer";
 import FilterUserData from "./FilterUserData/FilterUserData";
+
 
 const Users = () => {
   const totalCount = useSelector(getTotalCount)

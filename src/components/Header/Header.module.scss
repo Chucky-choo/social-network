@@ -1,0 +1,60 @@
+.Header {
+  background-color: #ffffff;
+  height: 60px;
+  border-bottom: 1px solid rgba(167, 160, 160, 0.91);
+
+  .header__container {
+    padding: 0 35px 0 35px;
+    max-width: 935px;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    justify-content: space-around;
+  }
+
+
+  .logo {
+    height: 29px;
+    pointer-events: none;
+  }
+
+  @media (max-width: 600px) {
+    .logo {
+      display: none;
+    }
+  }
+
+  .ava {
+    width: 50px;
+    border-radius: 50%;
+  }
+
+  .bar {
+    margin-left: auto;
+    display: flex;
+    height: 60px;
+
+    .in {
+      color: #ffff;
+
+      &:hover {
+        text-decoration: none;
+        color: white;
+      }
+    }
+
+    .up {
+      color: black;
+
+      &:hover {
+        text-decoration: none;
+        color: black;
+      }
+    }
+  }
+
+}
+
+
+
+

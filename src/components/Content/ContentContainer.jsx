@@ -34,12 +34,10 @@ const PopupHeader = styled.div`
     border-radius: 50px;
   }
 `
-
 const PopupPostImg = styled.img`
   max-height: 300px;
   width: 100%;
 `
-
 
 const PopupFooter = styled.div`
   margin-top: 10px;
@@ -92,11 +90,9 @@ const ContentContainerApi = (props) => {
               </PopupFooter>
             </PopupPostContainer>
           </Popup>
-
         </>
         : null
       }
-
     </div>
   )
 }

@@ -1,52 +1,43 @@
 import React from "react";
-import logo from './logo.svg';
-import s from './Header.module.css';
+import s from './Header.module.scss';
 import {NavLink} from "react-router-dom";
-import kage from '../../assets/imeges/kage.png'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import Button from "@material-ui/core/Button";
+import CustomStyledMenu from "./StyledAvatarMenu/StyledAvatarMenu";
+import SimpleBottomNavigation from "./SimpleBottomNavigation/SimpleBottomNavigation";
+import Logo from '../../assets/imeges/Logo.png'
+import BtnStyled from "../../Elements/BtnStyled/BtnStyled";
+import {useSelector} from "react-redux";
 
-let Header = React.memo(({auth, photoUsers, deleteAuth}) => {
 
+const Header = () => {
+  const isAuth = useSelector(store => store.auth.isAuth)
 
-  const triggerNavLink = () => {
-    const a = document.querySelector('a')
-    a.click()
-  }
-
-  return (
-    <div className={s.Header}>
-      <img src={logo} alt={''}
-           className={s.Logo}/>
-      {(auth.isAuth)
-        ? <div className={s.bar}>
-          <p className={s.name}>
-            {auth.profileUserData.fullName}
-          </p>
-          {(photoUsers)
-            ? <img className={s.ava} src={photoUsers} alt=''/>
-            : <img className={s.ava} src={kage} alt=''/>}
-          <Button
-            variant="contained"
-            onClick={() => deleteAuth()}
-            size="small"
-            className={s.btnOut}
-            startIcon={<ExitToAppIcon/>}
-          >
-            log out
-          </Button>
+    return (
+      <div className={s.Header}>
+        <div className={s.header__container}>
+          <img className={s.logo} src={Logo} alt=""/>
+          <div className={s.bar}>
+            <SimpleBottomNavigation/>
+            <CustomStyledMenu/>
+            {(!isAuth &&
+              <>
+                <BtnStyled primary
+                           startIcon={<ExitToAppIcon/>}>
+                  <NavLink to="/Login" className={s.in}>
+                    log In
+                  </NavLink>
+                </BtnStyled>
+                <BtnStyled>
+                  <a id='signUp' href="https://social-network.samuraijs.com/signUp" className={s.up}>
+                    Sign up
+                  </a>
+                </BtnStyled>
+              </>
+            )}
+          </div>
         </div>
-        : <Button
-          variant="contained"
-          onClick={triggerNavLink}
-          size="small"
-          className={s.btnIn}
-          startIcon={<ExitToAppIcon/>}
-        >
-          log In
-        </Button>}
-      <NavLink to={'/login'} className={s.navLink}/>
-    </div>);
-})
+
+      </div>);
+  }
 
 export default Header;
