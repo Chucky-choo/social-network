@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import CustomStyledMenu from "./StyledAvatarMenu/StyledAvatarMenu";
 import SimpleBottomNavigation from "./SimpleBottomNavigation/SimpleBottomNavigation";
-import Logo from '../../assets/imeges/Logo.png'
+// import Logo from '../../assets/imeges/Logo.png'
 import BtnStyled from "../../Elements/BtnStyled/BtnStyled";
 import {useSelector} from "react-redux";
 
@@ -15,7 +15,7 @@ const Header = () => {
     return (
       <div className={s.Header}>
         <div className={s.header__container}>
-          <img className={s.logo} src={Logo} alt=""/>
+          {/*<img className={s.logo} src={Logo} alt=""/>*/}
           <div className={s.bar}>
             <SimpleBottomNavigation/>
             <CustomStyledMenu/>
