@@ -4,10 +4,16 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import Button from '@material-ui/core/Button';
 import {ButtonGroup} from "@material-ui/core";
+import Popup from "../../../Elements/Popup/Popup";
+import {changPage, getUsersThunkCreators} from "../../../redux/users-reducer";
+import {useDispatch, useSelector} from "react-redux";
 
 
 const Paginator = React.memo(({totalCount, pageSize, currentPage,
-                     ChangePageNow, buttonsAmount = 6}) => {
+                      buttonsAmount = 6, setQuery}) => {
+
+  const dispatch = useDispatch()
+  const {term, friend} = useSelector(store => store.users)
 
   let numberOfAllPages = Math.ceil(totalCount / pageSize)
   const pages = [];
@@ -16,6 +22,14 @@ const Paginator = React.memo(({totalCount, pageSize, currentPage,
   }
 
   const [leftBorder, changeLeftBorder] = useState(1)
+
+
+  const ChangePageNow = (newPage) => {
+   setQuery({page: pageSize, count: newPage, term, friend})
+    dispatch(changPage(newPage))
+    dispatch(getUsersThunkCreators(pageSize, newPage, term, friend))
+  }
+
 
   const moveLeft = () => {
     (leftBorder < 6)
@@ -28,9 +42,14 @@ const Paginator = React.memo(({totalCount, pageSize, currentPage,
       : changeLeftBorder(leftBorder + buttonsAmount)
   }
 
-  useEffect(() => { if (numberOfAllPages < currentPage)
+  useEffect(() => {
+    if(totalCount === 0){
+      return ;
+    }
+    if (numberOfAllPages < currentPage)
   {ChangePageNow(1)}
   }, [numberOfAllPages])
+
 
   useEffect(() => {
     if(pages.length === 0){

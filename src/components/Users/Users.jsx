@@ -1,12 +1,15 @@
 import React, {useEffect} from "react";
-import Paginator from "../../Elements/Paginator/Paginator";
+import Paginator from "./Paginator/Paginator";
 import User from "./User/User";
-import {getBlockFollow, getCurrentPage, getIsFetching,
-  getPageSize, getTotalCount, getUsersReselect} from "../../redux/selektor";
+import {
+  getBlockFollow, getCurrentPage, getIsFetching,
+  getPageSize, getTotalCount, getUsersReselect
+} from "../../redux/selektor";
 import {useDispatch, useSelector} from "react-redux";
 import Preloader from "../../Elements/Preloader/Praloder";
 import {changPage, getUsersThunkCreators} from "../../redux/users-reducer";
 import FilterUserData from "./FilterUserData/FilterUserData";
+import {NumberParam, StringParam, useQueryParams} from "use-query-params";
 
 
 const Users = () => {
@@ -16,29 +19,39 @@ const Users = () => {
   const currentPage = useSelector(getCurrentPage)
   const isFetching = useSelector(getIsFetching)
   const blockFollow = useSelector(getBlockFollow)
-  const {term, friend} = useSelector(store => store.users)
+ // const {term, friend} = useSelector(store => store.users)
 
   const dispatch = useDispatch()
 
-  useEffect(() => {dispatch(getUsersThunkCreators(pageSize, currentPage, term, friend))}, [])
 
-  const ChangePageNow = (newPage) => {
-    dispatch(changPage(newPage))
-    dispatch(getUsersThunkCreators(pageSize, newPage, term, friend))
-  }
+  const [query, setQuery] = useQueryParams({
+    count: NumberParam,
+    page: NumberParam,
+    term: StringParam,
+    friend: StringParam,
+  });
+const {count, page, term, friend } = query;
+
+
+
+  useEffect(() => {dispatch(getUsersThunkCreators(count || 25, page || 1, term, friend))}, [])
 
   return (
     <div>
-      <FilterUserData/>
+      <FilterUserData setQuery={setQuery}
+                      query={query}
+      />
       {isFetching
         ? <Preloader/>
         : <>
+          {totalCount === 0 && <p>Not found</p>}
           <User usersData={usersData}
                 blockFollow={blockFollow}/>
           <Paginator currentPage={currentPage}
-                     ChangePageNow={ChangePageNow}
                      totalCount={totalCount}
-                     pageSize={pageSize}/>
+                     pageSize={pageSize}
+                     setQuery={setQuery}
+          />
         </>
       }
     </div>)

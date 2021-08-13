@@ -71,8 +71,10 @@ const usersReducer = (state = initialState, action: any): typeof initialState =>
             }
         }
         case FILTER_USER_DATA: {
-            return {...state, friend: action.friend, term: action.term,
-                pageSize: action.pageSize}
+            return {
+                ...state, friend: action.friend, term: action.term,
+                pageSize: action.pageSize
+            }
         }
         default:
             return state
@@ -113,15 +115,16 @@ export const filterUsersData = (term: string, friend: string, pageSize: number):
 export const getUsersThunkCreators = (pageSize: number, currentPage: number, term: string, friend: string) => {
     return (dispatch: any) => {
         dispatch(toggleChang(true))
+        dispatch(filterUsersData(term, friend, pageSize));
+        dispatch(changPage(currentPage))
         usersAPI.getUsers(pageSize, currentPage, term, friend)
             .then(response => {
-                dispatch(toggleChang(false))
                 dispatch(setUsersCount(response.totalCount))
                 dispatch(setUsers(response.items))
+                dispatch(toggleChang(false))
             })
     }
 }
-
 
 
 export const changeFollowThunkCreators = (id: number, followed: boolean) => {

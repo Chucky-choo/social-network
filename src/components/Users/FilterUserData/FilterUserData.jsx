@@ -4,39 +4,46 @@ import React from "react";
 import * as yup from "yup";
 import {useDispatch, useSelector} from "react-redux";
 import s from './FilterUserData.module.scss'
-import {filterUsersData, getUsersThunkCreators} from "../../../redux/users-reducer";
+import {getUsersThunkCreators} from "../../../redux/users-reducer";
 import BtnStyled from "../../../Elements/BtnStyled/BtnStyled";
 import SearchIcon from '@material-ui/icons/Search';
 
-const FilterUserData = () => {
+const FilterUserData = ({setQuery, query}) => {
   const dispatch = useDispatch()
-
   const currentPage = useSelector(store => store.users.currentPage)
+  const {count, page, term, friend} = query;
+
 
   const Validate = yup.object().shape({
     pageSize: yup.number()
       .max(100, 'not more than a hundred')
   })
-
+  console.error('rerender')
   return (
-    <Formik initialValues={{term: '', friend: '', pageSize: 25,}}
+
+    <Formik initialValues={{term: term, friend: friend, pageSize: count}}
             validationSchema={Validate}
             onSubmit={(values, {setSubmitting}) => {
-              dispatch(filterUsersData(values.term, values.friend, values.pageSize));
+              debugger
+              setQuery({page: values.pageSize, count: currentPage, term: values.term, friend: values.friend})
               dispatch(getUsersThunkCreators(values.pageSize, currentPage, values.term, values.friend))
               setSubmitting(false);
             }}>
       {({isSubmitting}) => (
         <Form className={s.container}>
-          <CustomField name='term' type='text' text={<SearchIcon />} placeholder={'Search...'}/>
+          <CustomField value={term}
+                       name='term'
+                       type='text'
+                       text={<SearchIcon/>}
+                       placeholder={'Search...'}/>
           <CustomField name='pageSize' type='text' text='page size'/>
-         <div className={s.container__select}>
+          <div className={s.container__select}>
             <Field className="custom-select" name="friend" as="select">
               <option value="">All</option>
               <option value={true}>follow</option>
               <option value={false}>unfollow</option>
             </Field>
-         </div>
+          </div>
           <BtnStyled primary type="submit" disabled={isSubmitting}>
             Filter
           </BtnStyled>

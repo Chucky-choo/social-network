@@ -3,13 +3,13 @@ import React from "react";
 import s from './CustomeField.module.scss'
 
 
-const CustomField = ({text, name, placeholder, type}) => {
+const CustomField = ({text, name, placeholder, type, value}) => {
 
   if (type === 'checkbox') {
     return (
       <div className={s.switch__container}>
         <div className="form-check form-switch">
-          <Field name={name} className="form-check-input" type="checkbox" id="flexSwitchCheckDefault"/>
+          <Field name={name} className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" value={value}/>
           <label className={s.label} htmlFor="flexSwitchCheckDefault">{text}</label>
         </div>
       </div>

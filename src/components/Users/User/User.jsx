@@ -17,9 +17,10 @@ import styled from 'styled-components'
 
 const useStyles = makeStyles({
   root: {
-    minHeight: 450,
+    minHeight: 380,
     minWidth: 200,
     maxWidth: 300,
+    maxHeight: 500,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -48,7 +49,7 @@ export const FollowBtn = styled(BtnStyled)`
   justify-content: center;
 `
 
-const User = ({usersData, blockFollow}) => {
+const User = React.memo(({usersData, blockFollow}) => {
   const setFollow = changeFollowThunkCreators
 
   const dispatch = useDispatch()
@@ -88,5 +89,5 @@ const User = ({usersData, blockFollow}) => {
       )}
     </div>)
 }
-
+)
 export default User

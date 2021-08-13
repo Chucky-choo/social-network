@@ -10,8 +10,6 @@ import {useSelector} from "react-redux";
 
 
 const Header = () => {
-
-    // testing
   const isAuth = useSelector(store => store.auth.isAuth)
 
     return (
@@ -38,7 +36,6 @@ const Header = () => {
             )}
           </div>
         </div>
-
       </div>);
   }
 

@@ -2,12 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import store from './redux/redux-store'
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, Route} from "react-router-dom";
 import {Provider} from "react-redux";
-import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
 import {ThemeProvider} from '@material-ui/core/styles';
 import {createMuiTheme} from '@material-ui/core/styles';
+import { QueryParamProvider } from 'use-query-params';
 
 
 // const theme = {
@@ -36,11 +35,12 @@ const theme = createMuiTheme({
 
 ReactDOM.render(
   <BrowserRouter>
+    <QueryParamProvider ReactRouterRoute={Route}>
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <App/>
       </ThemeProvider>
-
     </Provider>
+</QueryParamProvider>
   </BrowserRouter>, document.getElementById('root'));
 
