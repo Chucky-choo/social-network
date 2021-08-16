@@ -1,5 +1,5 @@
 import s from './App.module.css';
-import {Route, withRouter} from "react-router-dom";
+import {Route, Switch, withRouter} from "react-router-dom";
 import React, {useEffect, Suspense, lazy} from 'react';
 import Praloder from "./Elements/Preloader/Praloder";
 import {connect} from "react-redux";
@@ -8,6 +8,8 @@ import {compose} from "redux";
 import EditingProfileContainer from "./components/EditingProfile/EditingProfileContainer";
 import {Redirect} from "react-router";
 import Header from "./components/Header/Header";
+import NotAddedContent from "./Elements/NotAddedContent/NotAddedContent";
+import NotFound from "./Elements/NotFound/NotFound";
 
 
 const ContentContainer = lazy(() => import('./components/Content/ContentContainer'))
@@ -40,18 +42,25 @@ let App = ({initializedChecked, initializedTC}) => {
     <div className={s.body}>
       <Header />
       <div className={s.normal_mode}>
-        <Suspense fallback={<div>Загрузка...</div>}>
+        <Suspense fallback={<div>Loading...</div>}>
+        <Switch>
           <Route exact path='/'
                  render={ () => <Redirect to={'/Content'} />} />
           <Route path="/content/:userId?" component={ContentContainer}/>
-          <Route path={"/dialogs"} component={DialogsContainer}/>
-          <Route path={"/news"} component={News}/>
-          <Route path={"/settings"} component={Settings}/>
+          <Route path={"/dialogs"} component={NotAddedContent}/>
+          <Route path={"/news"} component={NotAddedContent}/>
+          <Route path={"/settings"} component={NotAddedContent}/>
           <Route path={"/music"} component={Music}/>
           <Route path={"/users"} component={Users}/>
           <Route path={"/login"} component={Login}/>
           <Route path={"/EditingProfile"} component={EditingProfileContainer}/>
+          <Route path="/404" component={NotFound} />
+          <Redirect to='/404' />
+        </Switch>
+
+
         </Suspense>
+
       </div>
     </div>
   );

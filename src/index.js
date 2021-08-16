@@ -9,14 +9,6 @@ import {createMuiTheme} from '@material-ui/core/styles';
 import { QueryParamProvider } from 'use-query-params';
 
 
-// const theme = {
-//   colors: {
-//     primary: '#0094f5',
-//     secondary: 'transparent'
-//   }
-// }
-
-
 const theme = createMuiTheme({
   palette: {
     primary: {

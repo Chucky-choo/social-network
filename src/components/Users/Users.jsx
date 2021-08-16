@@ -19,7 +19,6 @@ const Users = () => {
   const currentPage = useSelector(getCurrentPage)
   const isFetching = useSelector(getIsFetching)
   const blockFollow = useSelector(getBlockFollow)
- // const {term, friend} = useSelector(store => store.users)
 
   const dispatch = useDispatch()
 
