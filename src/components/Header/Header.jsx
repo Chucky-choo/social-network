@@ -7,10 +7,13 @@ import SimpleBottomNavigation from "./SimpleBottomNavigation/SimpleBottomNavigat
  import Logo from '../../assets/imeges/Logo.png'
 import BtnStyled from "../../Elements/BtnStyled/BtnStyled";
 import {useSelector} from "react-redux";
+import {useMediaQuery} from "@material-ui/core";
 
 
 const Header = () => {
   const isAuth = useSelector(store => store.auth.isAuth)
+
+  const matches = useMediaQuery('(min-width:450px)');
 
     return (
       <div className={s.Header}>
@@ -18,9 +21,10 @@ const Header = () => {
           <img className={s.logo} src={Logo} alt=""/>
           <div className={s.bar}>
             <SimpleBottomNavigation/>
-            <CustomStyledMenu/>
+            {isAuth && <CustomStyledMenu/>  }
             {(!isAuth &&
               <>
+                {matches && <CustomStyledMenu/> }
                 <BtnStyled primary
                            startIcon={<ExitToAppIcon/>}>
                   <NavLink to="/Login" className={s.in}>

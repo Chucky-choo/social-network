@@ -12,7 +12,6 @@ import { QueryParamProvider } from 'use-query-params';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      // Purple and green play nicely together.
       main: '#0094f5',
     },
     secondary: {
@@ -21,6 +20,15 @@ const theme = createMuiTheme({
     },
     palette: {
       main: 'black',
+    },
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
     },
   },
 });

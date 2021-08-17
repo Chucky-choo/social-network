@@ -12,10 +12,14 @@ import {useHistory, useLocation} from "react-router";
 
 const useStyles = makeStyles({
   root: {
-    width: 300,
+    width: 350,
+    ['@media (max-width:550px)']: {
+      width: 150
+    }
   },
   btn: {
     color: 'black',
+    minWidth: 50,
   },
   red: {
     background: 'red',
@@ -31,7 +35,8 @@ const useStyles = makeStyles({
     }
   },
   music: {
-    color: 'white'
+    color: 'white',
+    minWidth: 50,
   }
 });
 
@@ -53,9 +58,7 @@ export default function SimpleBottomNavigation() {
     history.push(way);
   }
 
-  useEffect(() => {
-    dispatch(setActiveContent(location.pathname))
-  }, [])
+  useEffect(() => {dispatch(setActiveContent(location.pathname))}, [])
 
 
   return (
@@ -63,11 +66,8 @@ export default function SimpleBottomNavigation() {
       value={activeContent}
       onChange={handleChange}
       className={classes.root}
-      // color="secondary"
     >
-      <BottomNavigationAction onClick={() => {
-        handleClick("/music")
-      }}
+      <BottomNavigationAction onClick={() => {handleClick("/music")}}
                               label="Music"
                               value='/music'
                               icon={
@@ -75,16 +75,12 @@ export default function SimpleBottomNavigation() {
                                   < PlayCircleOutlineIcon/>
                                 </div>}
                               className={classes.music}/>
-      <BottomNavigationAction onClick={() => {
-        handleClick("/dialogs")
-      }}
+      <BottomNavigationAction onClick={() => {handleClick("/dialogs")}}
                               label="Chat"
                               value='/dialogs'
                               icon={<ChatIcon/>}
                               className={classes.btn}/>
-      <BottomNavigationAction onClick={() => {
-        handleClick("/users")
-      }}
+      <BottomNavigationAction onClick={() => {handleClick("/users")}}
                               className={classes.btn}
                               label="Users"
                               value='/users'
