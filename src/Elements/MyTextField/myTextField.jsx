@@ -40,8 +40,6 @@ const MyTextField = ({label, errorMessage, ...props}) => {
         <>
          <ErrorMessage text={meta.error}/>
         </>
-
-
       ) : null}
     </>
   );

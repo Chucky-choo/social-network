@@ -25,13 +25,9 @@ const Profile = ({matchId}) => {
       <div className={s.info_top}>
         <span>{profileUserData.fullName}</span>
         {!matchId &&
-
-         <BtnStyled primary>
-          <NavLink style={{ color: "white" }} to="/EditingProfile">Edit Profile</NavLink>
+         <BtnStyled>
+          <NavLink style={{ color: "black" }} to="/EditingProfile">Edit Profile</NavLink>
         </BtnStyled >
-          // <Button variant="outlined" size="small">
-          //   <NavLink to="/EditingProfile">Edit Profile</NavLink>
-          // </Button>
         }
       </div>
       <div className={s.info_middle}>

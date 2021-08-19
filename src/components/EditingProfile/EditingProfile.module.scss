@@ -1,55 +1,26 @@
 .main {
-h1{
-  width: 200px;
-  margin: 0 auto;
-}
-
-  h4 {
-    margin: 0 auto;
-  }
-}
-
-
-
-.editAva {
+  height: calc(100vh - 60px);
+  background: #f9f9f9;
   display: flex;
   justify-content: center;
-  align-items: center;
 
-  p {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 0;
+
+  .main__container {
+    height: fit-content;
+    max-width: 700px;
+    width: 100%;
+    margin: 30px 0 15px 0;
+    border: 0.5px solid rgba(174, 171, 171, 0.48);
+    border-radius: 4px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+
   }
 
-}
-
-.form {
-  max-width: 500px;
-  display: flex;
-  flex-direction: column;
-  margin: 10px auto 15px auto;
-  background: #61dafb;
-  border-radius: 50px;
-}
-
-.field {
-  width: 150px;
-}
-
-.form input {
-  margin: 5px;
-}
-
-.form button {
-  margin: 0 auto 15px;
-width: 150px;
-}
-
-.wornings {
-  background: red;
-}
-
-input[type=file] {
-  display: none;
+  @media (max-width: 450px) {
+    .main__container {
+      margin: 1px 0 0 0;
+    }
+  }
 }

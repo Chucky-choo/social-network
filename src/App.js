@@ -5,7 +5,6 @@ import Praloder from "./Elements/Preloader/Praloder";
 import {connect} from "react-redux";
 import {initializedTC} from "./redux/app-reducer";
 import {compose} from "redux";
-import EditingProfileContainer from "./components/EditingProfile/EditingProfileContainer";
 import {Redirect} from "react-router";
 import Header from "./components/Header/Header";
 import NotAddedContent from "./Elements/NotAddedContent/NotAddedContent";
@@ -13,12 +12,10 @@ import NotFound from "./Elements/NotFound/NotFound";
 
 
 const ContentContainer = lazy(() => import('./components/Content/ContentContainer'))
-const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer'))
-const News = lazy(() => import('./components/News/News'))
-const Settings = lazy(() => import('./components/Settings/Settings'))
 const Music = lazy(() => import('./components/Music/Music'))
 const Users = lazy(() => import('./components/Users/Users'))
 const Login = lazy(() => import('./components/Login/Login'))
+const EditingProfile = lazy(() => import("./components/EditingProfile/EditingProfile"))
 
 let App = ({initializedChecked, initializedTC}) => {
 
@@ -53,7 +50,7 @@ let App = ({initializedChecked, initializedTC}) => {
           <Route path={"/music"} component={Music}/>
           <Route path={"/users"} component={Users}/>
           <Route path={"/login"} component={Login}/>
-          <Route path={"/EditingProfile"} component={EditingProfileContainer}/>
+          <Route path={"/EditingProfile"} component={EditingProfile}/>
           <Route path="/404" component={NotFound} />
           <Redirect to='/404' />
         </Switch>
