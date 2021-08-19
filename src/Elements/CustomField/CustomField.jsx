@@ -33,19 +33,6 @@ const CustomField = ({text, name, placeholder, type, value}) => {
         <ErrorMessage name={name} component="div" className={s.errors}/>
       </div>
     </div>
-
-
-
-
-    // <div className={s.input__container}>
-    //   <label className={s.label}>{text}</label>
-    //   <Field name={name}
-    //          placeholder={placeholder}
-    //          type={type}
-    //          className="form-control"
-    //   />
-    //   <ErrorMessage name={name} component="div" className={s.errors}/>
-    // </div>
   )
 }
 

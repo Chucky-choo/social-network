@@ -2,11 +2,10 @@ import {Redirect} from "react-router";
 import React from 'react';
 import {connect} from "react-redux";
 
-let mapProps = (state) => {
+const mapProps = (state) => {
   return {isAuth: state.auth.isAuth}
 }
-
-let RedirectHoc = (Component) => {
+const RedirectHoc = (Component) => {
   let RedirectWrap = (props) => {
     if (!props.isAuth) {return <Redirect to='/login' />}
     return <Component{...props} />

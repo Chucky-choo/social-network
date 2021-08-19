@@ -2,6 +2,7 @@ import {statusApi, usersAPI} from "../API/UsersAPI";
 import {photosDataType, ProfileUserType, setUsersAcauntAC} from "./header-reducer";
 import {initializedTC} from "./app-reducer";
 
+
 const SET_USERS_PROFILE = "profile/SET_USERS_PROFILE"
 const CHANGE_STATUS = 'profile/CHANGE_STATUS'
 const CHANGE_PHOTO_PROFILE = 'profile/CHANGE_PHOTO_PROFILE'

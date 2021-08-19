@@ -46,7 +46,7 @@
 @media (max-width: 500px) {
   .main {
     padding: 4% 0 0 0;
-    min-height: calc(100vh - 164px);
+    min-height: calc(100vh - 60px);
   }
 }
 
@@ -59,13 +59,13 @@
 .content_music {
   grid-area: c;
   background: #a6c899;
-  height: calc(100vh - 130px);
+  height: calc(100vh - 60px);
 }
 
 @media (max-width: 450px) {
   .content_music {
     grid-area: c;
     background: #c0d0b4;
-    height: calc(100vh - 164px);
+    height: calc(100vh - 60px);
   }
 }

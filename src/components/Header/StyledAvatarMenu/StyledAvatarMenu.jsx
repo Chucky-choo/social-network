@@ -8,6 +8,7 @@ import {NavLink} from "react-router-dom";
 import {makeStyles} from "@material-ui/core";
 import s from "../Header.module.scss";
 import kage from "../../../assets/imeges/kage.png";
+import icons from '../../../assets/icons/iconUserBlac.png'
 
 const options = [
   {name: 'Profile', way: '/Content'},
@@ -15,12 +16,13 @@ const options = [
   {name: 'News', way: '/news'},
 ];
 
-const ITEM_HEIGHT = 48;
+const ITEM_HEIGHT = 42;
 
 const useStyles = makeStyles({
   ava: {
-    width: 55,
-    height: 55,
+    width: ITEM_HEIGHT,
+    height: ITEM_HEIGHT,
+    borderRadius: 50,
   },
   activeLink: {
     color: 'red',
@@ -34,14 +36,14 @@ const useStyles = makeStyles({
     }
   },
   style: {
-    maxHeight: ITEM_HEIGHT * 4.5,
-    width: '20ch',
+    maxHeight: ITEM_HEIGHT *1.5,
+    // width: '20ch',
   },
 
 });
 
 
-export default function CustomStyledMenu() {
+export default function StyledAvatarMenu() {
   const dispatch = useDispatch()
   const classes = useStyles()
 
@@ -72,8 +74,12 @@ export default function CustomStyledMenu() {
         aria-controls="long-menu"
         aria-haspopup="true"
         onClick={handleClick}
-        className={classes.ava}>
-        <img className={s.ava} src={photoUsers || kage} alt=''/>
+        // className={classes.ava}
+        >
+        {/*<img className={s.ava} src={photoUsers || kage} alt=''/>*/}
+        <img
+          className={classes.ava}
+          src={photoUsers} alt=''/>
       </IconButton>
       <Menu
         id="long-menu"
@@ -81,7 +87,8 @@ export default function CustomStyledMenu() {
         keepMounted
         open={open}
         onClose={handleClose}
-        PaperProps={classes.style}>
+        PaperProps={classes.style}
+      >
         {options.map((option) => (
           <NavLink to={option.way} className={classes.link}>
             <MenuItem key={option.name} onClick={handleClose}>

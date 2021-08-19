@@ -4,8 +4,6 @@ import s from './EditingProfile.module.scss'
 import {Redirect} from "react-router";
 import CustomField from "../../Elements/CustomField/CustomField";
 import Button from "@material-ui/core/Button";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
-import BtnUpload from "../../Elements/BtnUpload/BtnUpload";
 import BtnStyled from "../../Elements/BtnStyled/BtnStyled";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 
