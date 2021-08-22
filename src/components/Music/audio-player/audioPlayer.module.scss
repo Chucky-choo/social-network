@@ -26,15 +26,9 @@
 
   .footer {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     position: relative;
     top: -30px;
   }
 }
-
-//@media (max-width: 450px) {
-//  .body {
-//    transform: translate(0, 32px);
-//  }
-//}

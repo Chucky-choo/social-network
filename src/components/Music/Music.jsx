@@ -23,7 +23,7 @@ function Music() {
       } else {
         dispatch(SetTrackProgress());
       }
-    }, [1000]);
+    }, [250]);
   };
 
   const pauseSpace = (e) => {

@@ -9,20 +9,15 @@ import RepeatIcon from '@material-ui/icons/Repeat';
 import RepeatOneIcon from '@material-ui/icons/RepeatOne';
 import ShuffleIcon from '@material-ui/icons/Shuffle';
 import classNames from "classnames/bind";
-import {bool} from "yup";
 
 
-let RightControl = () => {
+const RightControl = () => {
   const dispatch = useDispatch()
 
   const {isMuted, volume, audio, trackIndex, isRepeat} = useSelector(store => store.music)
 
   const changeRepeat = () => {
-    // if(isRepeat === 1) {
-    //   audio.pause()
-    // }
     dispatch(SetRepeat(isRepeat + 1))
-    //isRepeat === 1 ? audio.loop = true :audio.loop = false
   }
 
   const onChangeVolume = (e) => {

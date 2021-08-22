@@ -1,6 +1,6 @@
 @media (max-width: 540px) {
   .groupIcons {
-    height: 0;
+
     overflow: hidden;
   }
 
@@ -16,35 +16,36 @@
 
   }
 }
-@media (min-width: 541px) {
-  .main {
+
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  margin-right: 2vw;
+
+  .slider {
+    color: #FFFFFF;
+    width: 60px;
+  }
+
+
+  .groupIcons {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 180px;
+    justify-content: space-around;
 
-    .slider {
+    .white_repeat {
       color: #FFFFFF;
-      width: 60px;
     }
 
-
-    .groupIcons {
-      display: flex;
-      justify-content: space-around;
-      .white_repeat {
-        color: #FFFFFF;
-      }
-      .grey_repeat {
-        color: #8f8f8f;
-      }
-
-      svg {
-        margin: 0 7px;
-        color: #8f8f8f;
-      }
+    .grey_repeat {
+      color: #8f8f8f;
     }
-}
 
-
+    svg {
+      margin: 0 7px;
+      color: #8f8f8f;
+    }
+  }
 }

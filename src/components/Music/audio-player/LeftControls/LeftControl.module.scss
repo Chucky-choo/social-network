@@ -1,7 +1,6 @@
 @media (max-width:785px) {
   .time {
-    height: 0;
-    overflow: hidden;
+    display: none;
   }
 }
 
@@ -9,9 +8,9 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  //height: 72px;
   color: white;
   position: relative;
+  margin-left: 2vw;
 
   .time {
     color: #8f8f8f;
