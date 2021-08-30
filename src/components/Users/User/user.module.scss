@@ -5,5 +5,12 @@
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 24px;
   overflow-y: scroll;
-  height: calc(100vh - 216px)
+  height: calc(100vh - 230px )
+}
+
+@media(max-width: 645px){
+  .container {
+    height: calc(100vh - (278px + 135px) );
+    background: red;
+  }
 }
