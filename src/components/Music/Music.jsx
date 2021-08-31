@@ -6,8 +6,8 @@ import {useEffect, useRef} from "react";
 import {PrevOrNextSongIndexAC, SetIsPLaying, SetTrackProgress} from "../../redux/music-reducer";
 
 function Music() {
-  const dispatch = useDispatch()
 
+  const dispatch = useDispatch()
   const {trackIndex, isPlaying,
     musicData, isMuted, audio} = useSelector(store => store.music)
 
