@@ -20,7 +20,6 @@ import styled from 'styled-components'
 
 const PopupPostContainer = styled.div`
   padding: 10px 10px 0 10px;
-
   svg {
     font-size: 35px;
   }
@@ -38,7 +37,6 @@ const PopupPostImg = styled.img`
   max-height: 300px;
   width: 100%;
 `
-
 const PopupFooter = styled.div`
   margin-top: 10px;
   display: grid;
@@ -47,30 +45,30 @@ const PopupFooter = styled.div`
 
 
 const ContentContainerApi = (props) => {
-  let matchId = props.match.params.userId
+  debugger
+  let matchLogin = props.match.params.userLogin
   const idCurrentUser = useSelector(store => store.auth.id)
 
-  const [userId, setUsersId] = useState(matchId)
+  const [login, setLogin] = useState(matchLogin)
   const {isActivePopup} = useSelector(store => store.post)
 
 
-  if (!userId) {
-    setUsersId(props.InitialsUserId)
+  if (!login) {
+    setLogin(props.InitialsLogin)
   }
 
   useEffect(() => {
-    props.getStatus(userId)
-    props.getProfileThunk(userId)
-  }, [props.InitialsUserId, userId])
+  //  props.getStatus(login)
+    props.getProfileThunk(login)
+  }, [props.InitialsLogin, login])
 
-  useEffect(() => {setUsersId(matchId)}, [matchId])
+  useEffect(() => {setLogin(matchLogin)}, [matchLogin])
 
 
   return (
     <div className={s.main}>
-      <TitlePicture pictureArr={props.pictureArr}/>
       <Profile/>
-      {(userId === idCurrentUser)
+      {(login === idCurrentUser)
         ? <>
           <NewPost/>
           <Posts/>
@@ -100,18 +98,17 @@ const ContentContainerApi = (props) => {
 
 let mapStateToProps = (store) => {
   return {
-    pictureArr: store.post.imgTemaData,
     postDate: store.post.postDate,
-    InitialsUserId: store.auth.profileUserData.userId,
+    InitialsLogin: store.auth.profileUserData.login,
     popupInfo: store.post.popupInfo,
     fullNameUser: store.profile.profileUserData.fullName,
-    photoUsers: store.profile.profileUserData.photos.small
+    photoUsers: store.profile.profileUserData.avatar_url,
   }
 }
 
 export default compose(
   connect(mapStateToProps,
-    {getStatus: getStatusTC, getProfileThunk: getProfileThunkKreator}),
+    {getProfileThunk: getProfileThunkKreator}),
   RedirectHoc,
   withRouter)(ContentContainerApi)
 

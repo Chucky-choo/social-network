@@ -1,19 +1,16 @@
 import {useSelector} from "react-redux";
-import React from 'react'
 import s from "./Profile.module.scss";
 import Kage from "../../../assets/imeges/kage.png";
 import {NavLink} from "react-router-dom";
 import LinkIcons from "./linkIcon/link-ikon";
 import {StatusProfile} from "./StausProfile/Status-profile";
 import Preloader from "../../../Elements/Preloader/Praloder";
-import Button from '@material-ui/core/Button';
 import BtnStyled from "../../../Elements/BtnStyled/BtnStyled";
-import AddAlarmIcon from '@material-ui/icons/AddAlarm';
-import color from "color";
 
 
 const Profile = ({matchId}) => {
   const {profileUserData, statusValue, isLoading} = useSelector(store => store.profile)
+
 
   if (isLoading === true) {
     return <Preloader/>
@@ -21,9 +18,9 @@ const Profile = ({matchId}) => {
 
   return (
     <div className={s.header}>
-      <img className={s.ava} src={profileUserData.photos.large || Kage} alt={''}/>
+      <img className={s.ava} src={profileUserData.avatar_url || Kage} alt={''}/>
       <div className={s.info_top}>
-        <span>{profileUserData.fullName}</span>
+        <span>{profileUserData.login}</span>
         {!matchId &&
          <BtnStyled>
           <NavLink style={{ color: "black" }} to="/EditingProfile">Edit Profile</NavLink>
@@ -37,8 +34,8 @@ const Profile = ({matchId}) => {
           : <p>not looking for a job😎</p>}
         <p>{profileUserData.lookingForAJobDescription}</p>
       </div>
-      <StatusProfile status={statusValue}/>
-      <LinkIcons contacts={profileUserData.contacts}/>
+     {/*<StatusProfile status={statusValue}/>*/}
+      <LinkIcons email={profileUserData.email} gitHubURL={profileUserData.html_url} />
     </div>
   )
 }

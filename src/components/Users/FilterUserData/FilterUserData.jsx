@@ -7,49 +7,54 @@ import s from './FilterUserData.module.scss'
 import {getUsersThunkCreators} from "../../../redux/users-reducer";
 import BtnStyled from "../../../Elements/BtnStyled/BtnStyled";
 import SearchIcon from '@material-ui/icons/Search';
+import MyTextField from "../../../Elements/MyTextField/myTextField";
 
 const FilterUserData = ({setQuery, query}) => {
-    const dispatch = useDispatch()
-    const currentPage = useSelector(store => store.users.currentPage)
-    const {count, page, term, friend} = query;
+	const dispatch = useDispatch()
+	const currentPage = useSelector(store => store.users.currentPage)
+	const {page, count, term} = query;
 
 
-    const Validate = yup.object().shape({
-        pageSize: yup.number()
-            .max(100, 'not more than a hundred')
-    })
-    console.error('rerender')
-    return (
+	const Validate = yup.object().shape({
+		pageSize: yup.number('only nambers')
+			.max(100, 'max 100')
+	})
+	return (
 
-        <Formik initialValues={{term: term, friend: friend, pageSize: count}}
-                validationSchema={Validate}
-                onSubmit={(values, {setSubmitting}) => {
-                    setQuery({page: values.pageSize, count: currentPage, term: values.term, friend: values.friend})
-                    dispatch(getUsersThunkCreators(values.pageSize, currentPage, values.term, values.friend))
-                    setSubmitting(false);
-                }}>
-            {({isSubmitting}) => (
-                <Form className={s.container}>
-                    <CustomField value={term}
-                                 name='term'
-                                 type='text'
-                                 text={<SearchIcon/>}
-                                 placeholder={'Search...'}/>
-                    <CustomField placeholder={'number of cards per page'} name='pageSize' type='text' text='page size'/>
-                    <div className={s.container__select}>
-                        <Field className="custom-select" name="friend" as="select">
-                            <option value="">All</option>
-                            <option value={true}>follow</option>
-                            <option value={false}>unfollow</option>
-                        </Field>
-                    </div>
-                    <BtnStyled primary type="submit" disabled={isSubmitting}>
-                        Filter
-                    </BtnStyled>
-                </Form>
-            )}
-        </Formik>
-    )
+		<Formik
+			initialValues={{pageSize: count, term: term}}
+			validationSchema={Validate}
+			onSubmit={(values, {setSubmitting}) => {
+				setQuery({page: currentPage, count: values.pageSize, term: values.term})
+				dispatch(getUsersThunkCreators(currentPage, values.pageSize, values.term))
+				setSubmitting(false);
+			}}
+		>
+			{({isSubmitting}) => (
+				<Form className={s.container}>
+					<CustomField
+						name='term'
+						type='text'
+						text={<SearchIcon/>}
+						placeholder={'Search...'}
+					/>
+					<CustomField
+						placeholder={'number of cards per page'}
+						name='pageSize'
+						type='number'
+						text='page size'
+					/>
+					<BtnStyled
+						primary
+						type="submit"
+						disabled={isSubmitting}
+					>
+						Filter
+					</BtnStyled>
+				</Form>
+			)}
+		</Formik>
+	)
 }
 
 export default FilterUserData

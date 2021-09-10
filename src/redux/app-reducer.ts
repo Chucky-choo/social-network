@@ -1,4 +1,4 @@
-import {getAuthMeThunkCreator} from "./header-reducer";
+//import {getAuthMeThunkCreator} from "./header-reducer";
 
 const INITIALIZED_USERS: string= 'app/INITIALS_USERS'
 
@@ -34,14 +34,14 @@ export const initializedAC = (value: boolean): initializedType => ({type: INITIA
 
 
 
-export const initializedTC = (value: boolean) => {
-  return (dispatch: Function) => {
-    let promise = dispatch(getAuthMeThunkCreator())
-    promise.then(() => {
-      dispatch(initializedAC(value))
-    })
-  }
-}
+// export const initializedTC = (value: boolean) => {
+//   return (dispatch: Function) => {
+//     let promise = dispatch(getAuthMeThunkCreator())
+//     promise.then(() => {
+//       dispatch(initializedAC(value))
+//     })
+//   }
+// }
 
 
 export default appReducer

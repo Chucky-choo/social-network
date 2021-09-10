@@ -15,7 +15,7 @@ import {makeStyles} from "@material-ui/core/styles";
     },
 
     root: {
-        minHeight: 380,
+        minHeight: 390,
         minWidth: 200,
         maxWidth: 300,
         maxHeight: 500,
@@ -24,7 +24,7 @@ import {makeStyles} from "@material-ui/core/styles";
         justifyContent: 'space-between',
     },
     media: {
-        height: 240,
+        height: 220,
     },
     content: {
         textDecoration: 'none',

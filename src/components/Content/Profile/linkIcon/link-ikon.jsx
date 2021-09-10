@@ -6,10 +6,10 @@ import git from "../../../../assets/imeges/git.svg";
 import youtube from "../../../../assets/imeges/youtube.svg";
 import website from "../../../../assets/imeges/website.svg";
 import twit from "../../../../assets/imeges/twit.svg";
-import email from "../../../../assets/imeges/mail.svg";
+import emailSVG from "../../../../assets/imeges/mail.svg";
 
 
-const LinkIcons = ({contacts}) => {
+const LinkIcons = ({email, gitHubURL}) => {
   
   let pictureLink = (src, img) => {
 
@@ -29,14 +29,11 @@ const LinkIcons = ({contacts}) => {
   return (
     <>
       <div className={s.socialImg}>
-        {pictureLink(contacts.facebook, fs)}
-        {pictureLink(contacts.website, website)}
-        {pictureLink(contacts.vk, vk)}
-        {pictureLink(contacts.twitter, twit)}
-        {pictureLink(contacts.instagram, inst)}
-        {pictureLink(contacts.youtube, youtube)}
-        {pictureLink(contacts.github, git)}
-        {pictureLink(contacts.mainLink, email)}
+
+        {/*{pictureLink(contacts.website, website)}*/}
+
+        {pictureLink(gitHubURL, git)}
+        {pictureLink(email, emailSVG)}
       </div>
     </>
   )

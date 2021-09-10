@@ -47,7 +47,7 @@ export default function StyledAvatarMenu() {
   const dispatch = useDispatch()
   const classes = useStyles()
 
-  const photoUsers = useSelector(store => store.auth.profileUserData.photos.small)
+  const photoUsers = useSelector(store => store.auth.profileUserData.avatar_url)
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);

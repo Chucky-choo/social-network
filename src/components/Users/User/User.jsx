@@ -1,8 +1,5 @@
 import React from "react";
-import shadow from '../../../assets/imeges/kage.png'
 import {NavLink} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {changeFollowThunkCreators} from "../../../redux/users-reducer";
 import BtnStyled from "../../../Elements/BtnStyled/BtnStyled";
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -21,9 +18,6 @@ export const FollowBtn = styled(BtnStyled)`
 `
 
 const User = React.memo(({usersData, blockFollow}) => {
-		const setFollow = changeFollowThunkCreators
-
-		const dispatch = useDispatch()
 
 		const classes = useStyles();
 
@@ -32,19 +26,32 @@ const User = React.memo(({usersData, blockFollow}) => {
 				{usersData.map(el => {
 						return (
 							<Card className={classes.root} key={el.id}>
-								<NavLink to={`/Content/` + el.id} className={classes.content}>
+								<NavLink
+									to={`/Content/` + el.login}
+									className={classes.content}
+								>
 									<CardActionArea>
 										<CardMedia
 											className={classes.media}
-											image={el.photos.small || shadow}
+											image={el.avatar_url}
 											title="Contemplative Reptile"
 										/>
 										<CardContent>
-											<Typography gutterBottom variant="h5" component="h2">
-												{el.name}
+											<Typography
+												noWrap
+												gutterBottom
+												variant="h5"
+												component="h2"
+											>
+												{el.login}
 											</Typography>
-											<Typography variant="body2" color="textSecondary" component="p">
-												{el.status}
+											<Typography
+												noWrap
+												variant="body2"
+												color="textSecondary"
+												component="p"
+											>
+												{`id: ${el.id}`}
 											</Typography>
 										</CardContent>
 									</CardActionArea>
@@ -52,7 +59,6 @@ const User = React.memo(({usersData, blockFollow}) => {
 								<CardActions>
 									<FollowBtn
 										primary={!el.followed}
-										onClick={() => {dispatch(setFollow(el.id, el.followed))}}
 										disabled={blockFollow.some(id => id === el.id)}
 									>
 										{el.followed ? "Unfollow" : "Follow"}

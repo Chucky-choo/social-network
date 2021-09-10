@@ -4,8 +4,6 @@ import cloud from '../assets/imegesForAudio/cloud-5946381_1920.jpg'
 import cosmos from '../assets/imegesForAudio/cosmos-5809271_1920.png'
 import man from '../assets/imegesForAudio/man-6253257_1920.jpg'
 import walls from '../assets/imegesForAudio/walls-6157947_1920.jpg'
-import {usersAPI} from "../API/UsersAPI";
-import {blockFollowAC, observeSub} from "./users-reducer";
 
 const MyFakePhotoArr = [akuma, kage, cloud, cosmos, man, walls]
 
@@ -29,12 +27,6 @@ const arrFacePosts = (arrPhoto) => {
 }
 
 const initialState = {
-  imgTemaData: {
-    winter: 'https://pm1.narvii.com/6685/19e561f0332f5a270f9d96a63ffcfc2231b9d82c_hq.jpg',
-    spring: 'https://www.tui.ru/getmedia/a948242d-a830-43a1-ab3c-11576e4e4b49/japan-visa-main',
-    summer: 'https://media.nomadicmatt.com/japanguide.jpg',
-    autumn: 'https://s2.best-wallpaper.net/wallpaper/1920x1080/1301/Japan-Kyoto-Daigo-autumn-landscape_1920x1080.jpg'
-  },
   postDate: arrFacePosts(MyFakePhotoArr),
   newPostValue: "",
   isActivePopup: false,
@@ -73,7 +65,6 @@ export const addPhotoToData = (photoFile) => {
     reader.readAsDataURL(photoFile)
 
     reader.onload = ev => {
-      console.log(ev.target.result);
       MyFakePhotoArr.push(ev.target.result)
       dispatch(putPostPhoto(MyFakePhotoArr))
     }

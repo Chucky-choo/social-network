@@ -23,7 +23,6 @@ const useStyles = makeStyles({
 
 const ErrorMessage = ({text}) => {
   const c = useStyles()
-
   return (
     <>
       <p className={c.error}> {text}</p>

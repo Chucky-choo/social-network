@@ -21,7 +21,7 @@ export const StatusProfile = (props) => {
   let changeStatus = () => {
     isWritingStatus(!isWriting)
     if (isWriting === true) {
-      dispatch(putStatusTС(status))
+     // dispatch(putStatusTС(status))
     }
   }
 
