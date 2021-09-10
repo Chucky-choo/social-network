@@ -25,8 +25,8 @@ const FilterUserData = ({setQuery, query}) => {
 			initialValues={{pageSize: count, term: term}}
 			validationSchema={Validate}
 			onSubmit={(values, {setSubmitting}) => {
-				setQuery({page: currentPage, count: values.pageSize, term: values.term})
-				dispatch(getUsersThunkCreators(currentPage, values.pageSize, values.term))
+				setQuery({page: 1, count: values.pageSize, term: values.term})
+				dispatch(getUsersThunkCreators(1, values.pageSize, values.term))
 				setSubmitting(false);
 			}}
 		>

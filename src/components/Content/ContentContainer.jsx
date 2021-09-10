@@ -47,7 +47,7 @@ const PopupFooter = styled.div`
 const ContentContainerApi = (props) => {
   debugger
   let matchLogin = props.match.params.userLogin
-  const idCurrentUser = useSelector(store => store.auth.id)
+  const loginThisUser = useSelector(store => store.auth.profileUserData.login)
 
   const [login, setLogin] = useState(matchLogin)
   const {isActivePopup} = useSelector(store => store.post)
@@ -68,7 +68,7 @@ const ContentContainerApi = (props) => {
   return (
     <div className={s.main}>
       <Profile/>
-      {(login === idCurrentUser)
+      {(login === loginThisUser)
         ? <>
           <NewPost/>
           <Posts/>

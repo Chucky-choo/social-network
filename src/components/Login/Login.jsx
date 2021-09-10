@@ -62,6 +62,7 @@ const Login = () => {
 				<div className={c.container}>
 					<img src={userIcon} alt="" className={c.icon}/>
 					<h1 className={c.h1}>Sign in</h1>
+					<h5 className={c.h1}>Enter data GitHub</h5>
 					<MyTextField
 						type='text'
 						name='login'
