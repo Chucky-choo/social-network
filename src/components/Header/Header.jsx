@@ -1,6 +1,6 @@
 import React from "react";
 import s from './Header.module.scss';
-import {NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import StyledAvatarMenu from "./StyledAvatarMenu/StyledAvatarMenu";
 import SimpleBottomNavigation from "./SimpleBottomNavigation/SimpleBottomNavigation";
@@ -18,7 +18,9 @@ const Header = () => {
     return (
       <div className={s.Header}>
         <div className={s.header__container}>
-          <img className={s.logo} src={Logo} alt=""/>
+          <Link to={`/Content`}>
+            <img className={s.logo} src={Logo} alt=""/>
+          </Link>
           <div className={s.bar}>
             <SimpleBottomNavigation/>
             {isAuth && <StyledAvatarMenu/>  }
