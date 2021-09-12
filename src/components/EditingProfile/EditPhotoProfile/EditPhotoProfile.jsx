@@ -1,8 +1,8 @@
 import React from 'react';
 import s from './EditPhotoProfile.module.scss'
-import {putPhoto} from "../../../redux/profile-reducer";
 import {useDispatch} from "react-redux";
 import Popup from "../../../Elements/Popup/Popup";
+import {putPhoto} from "../../../redux/profile-reducer";
 
 const EditPhotoProfile = ({profileUserData}) => {
 	const dispatch = useDispatch()
@@ -10,7 +10,7 @@ const EditPhotoProfile = ({profileUserData}) => {
   const onMainPhotoSelected = (e) => {
     if (e.target.files.length) {
 
-      dispatch(putPhoto(e.target.files[0]))
+    dispatch(putPhoto(e.target.files[0]))
     }
   }
 

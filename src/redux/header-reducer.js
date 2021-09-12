@@ -1,5 +1,5 @@
 import {GitHubAPI} from "../API/UsersAPI";
-import {setUsersProfile} from "./profile-reducer";
+import {CHANGE_PHOTO_PROFILE, setUsersProfile} from "./profile-reducer";
 import {initializedAC} from "./app-reducer";
 import defaultAva from '../assets/icons/iconUserBlac.png'
 
@@ -8,7 +8,6 @@ const LOG_IN = "header/LOG_IN"
 const SET_USERS_AKAUNT = "header/SET_USERS_AKAUNT"
 const DELETE_LOGIN = "header/DELETE_LOGIN"
 const ERROR_MESSAGE = 'header/ERROR_MESSAGE'
-const CHANGE_PHOTO_PROFILE = 'profile/CHANGE_PHOTO_PROFILE'
 const SET_CAPTCHA = 'profile/SET_CAPTCHA'
 const SET_ID = 'SET_ID'
 const SET_ACTIVE_CONTENT = 'SET_ACTIVE_CONTENT'
@@ -65,7 +64,7 @@ const authReducer = (state = initialState, action) => {
 		case SET_CAPTCHA:
 			return {...state, captchaURL: action.captcha}
 		case CHANGE_PHOTO_PROFILE: {
-			return {...state, profileUserData: {...state.profileUserData, photos: action.photos}}
+			return {...state, profileUserData: {...state.profileUserData, avatar_url: action.photo}}
 		}
 		case SET_ID:
 			return {...state, id: action.userId, isAuth: true}
@@ -84,9 +83,7 @@ export const setUsersAcauntAC = (data) => {
 	}
 }
 const logOfAC = () => ({type: DELETE_LOGIN})
-const errorMessageAC = (message) => ({type: ERROR_MESSAGE, message})
-const setCaptcha = (captcha) => ({type: SET_CAPTCHA, captcha})
-const setId = (userId) => ({type: SET_ID, userId})
+export const setPhotoAuthUser = (photo) => ({type: CHANGE_PHOTO_PROFILE, photo})
 
 
 export const setActiveContent = (value) => ({type: SET_ACTIVE_CONTENT, value})
