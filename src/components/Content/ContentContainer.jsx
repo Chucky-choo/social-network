@@ -45,7 +45,6 @@ const PopupFooter = styled.div`
 
 
 const ContentContainerApi = (props) => {
-  debugger
   let matchLogin = props.match.params.userLogin
   const loginThisUser = useSelector(store => store.auth.profileUserData.login)
 

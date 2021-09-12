@@ -17,7 +17,6 @@ const CustomField = ({label, errorMessage, ...props}) => {
 
 
 	const [field, meta, helpers] = useField(props);
-	debugger
 	return (
 		<div className={s.root}>
 			<div className={labelClasses}>

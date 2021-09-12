@@ -3,7 +3,6 @@ import {Route, Switch, withRouter} from "react-router-dom";
 import React, {useEffect, Suspense, lazy} from 'react';
 import Praloder from "./Elements/Preloader/Praloder";
 import {connect} from "react-redux";
-//import {initializedTC} from "./redux/app-reducer";
 import {compose} from "redux";
 import {Redirect} from "react-router";
 import Header from "./components/Header/Header";
@@ -15,7 +14,7 @@ const ContentContainer = lazy(() => import('./components/Content/ContentContaine
 const Music = lazy(() => import('./components/Music/Music'))
 const Users = lazy(() => import('./components/Users/Users'))
 const Login = lazy(() => import('./components/Login/Login'))
-//const EditingProfile = lazy(() => import("./components/EditingProfile/EditingProfile"))
+const EditingProfile = lazy(() => import("./components/EditingProfile/EditingProfile"))
 
 let App = ({initializedChecked, initializedTC}) => {
 
@@ -24,16 +23,12 @@ let App = ({initializedChecked, initializedTC}) => {
   }
 
   useEffect(() => {
-   // initializedTC(true)
     window.addEventListener("unhandledrejection", catchAllUnhandledErrors)
      return () => {
        window.removeEventListener("unhandledrejection", catchAllUnhandledErrors)
      }
   }, [])
 
-  // if (!initializedChecked) {
-  //   return <Praloder/>
-  // }
 
   return (
     <div className={s.body}>
@@ -50,7 +45,7 @@ let App = ({initializedChecked, initializedTC}) => {
           <Route path={"/music"} component={Music}/>
           <Route path={"/users"} component={Users}/>
           <Route path={"/login"} component={Login}/>
-         {/*<Route path={"/EditingProfile"} component={EditingProfile}/>*/}
+         <Route path={"/EditingProfile"} component={EditingProfile}/>
           <Route path="/404" component={NotFound} />
           <Redirect to='/404' />
         </Switch>

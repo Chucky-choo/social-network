@@ -92,45 +92,12 @@ const setId = (userId) => ({type: SET_ID, userId})
 export const setActiveContent = (value) => ({type: SET_ACTIVE_CONTENT, value})
 
 
-// export const getAuthMeThunkCreator = () => {
-// 	return async (dispatch) => {
-// 		let response = await usersAPI.getAuthMe()
-// 		if (response.data.resultCode === 0) {
-
-// 			let res = await usersAPI.getProfile(response.data.data.id)
-// 			dispatch(setUsersProfile(res.data))
-		//	return dispatch(setUsersAcauntAC(res.data))
-//
-// 		}
-// 	}
-// }
-
 export const postAuthLoginTC = ({login}) => {
 	return async (dispatch) => {
-
-		debugger
 		let response = await GitHubAPI.getProfile(login)
 		dispatch(setUsersProfile(response.data))
 		dispatch(setUsersAcauntAC(response.data))
 		dispatch(authAC(true))
-		debugger
-	//	dispatch(initializedAC(false))
-
-		// if (response.resultCode === 0) {
-		//	dispatch(setId(response.data.userId))
-			//let res = await usersAPI.getProfile(response.data.userId)
-
-
-		//	dispatch(initializedAC(true))
-		// } else if (response.resultCode === 10) {
-		// 	dispatch(errorMessageAC(response.messages[0]))
-		// 	let captcha = await captchaAPI.getCaptcha()
-		// 	dispatch(setCaptcha(captcha.url))
-		// 	dispatch(initializedAC(true))
-		// } else {
-		// 	dispatch(errorMessageAC(response.messages[0]))
-		// 	dispatch(initializedAC(true))
-		// }
 	}
 }
 

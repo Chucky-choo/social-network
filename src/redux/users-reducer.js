@@ -81,7 +81,6 @@ export const setUsers = (items) => ({type: SET_USERS, items})
 export const changPage = (numbPage) => ({type: CHANGE_PAGE, numbPage})
 export const setUsersCount = (totalCount) => ({type: SET_TOTAL_USERS, totalCount})
 export const toggleChang = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching})
-export const blockFollowAC = (usersId, isFetching) => ({type: BLOCKED_FOLLOWING, usersId, isFetching})
 
 export const filterUsersData = (term, pageSize) => ({type: FILTER_USER_DATA, term, pageSize})
 
@@ -93,33 +92,11 @@ export const getUsersThunkCreators = (currentPage, pageSize, term) => {
 		dispatch(changPage(currentPage))
 		GitHubAPI.getUsers(currentPage, pageSize, term)
 			.then(response => {
-				debugger
 				dispatch(setUsersCount(response.total_count))
 				dispatch(setUsers(response.items))
 				dispatch(toggleChang(false))
 			})
 	}
 }
-
-
-// export const changeFollowThunkCreators = (id, followed) => {
-// 	return async (dispatch) => {
-// 		dispatch(blockFollowAC(id, true))
-// 		if (followed === true) {
-// 			const response = await usersAPI.deleteFollow(id)
-// 			if (response === 0) {
-// 				dispatch(observeSub(id))
-// 				dispatch(blockFollowAC(id, false))
-// 			}
-// 		} else {
-// 			const response = await usersAPI.postFollow(id)
-// 			if (response === 0) {
-// 				dispatch(observeSub(id))
-// 				dispatch(blockFollowAC(id, false))
-// 			}
-// 		}
-// 	}
-// }
-
 
 export default usersReducer

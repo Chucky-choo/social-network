@@ -5,12 +5,10 @@ import authReducer from "./header-reducer";
 import thunkMiddleware from 'redux-thunk';
 import appReducer from "./app-reducer";
 import profileReducer from "./profile-reducer";
-import {dialogReducer} from "./dialog-reducer";
 import {musicReducer} from "./music-reducer";
 
 let reduser = combineReducers({
   post: postReducer,
-  dialog: dialogReducer,
   users: usersReducer,
   auth: authReducer,
   app: appReducer,
